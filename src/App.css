@@ -1,0 +1,44 @@
+ /* CSS Reset */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, table, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+  
+  /* Global Styles */
+  body {
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    background-color: #f1f1f1;
+  }
+  
+  .container {
+    margin: 20px;
+  }
+  
+  /* Media Query for Phones and Tablets */
+  @media (max-width: 767px) {
+    body {
+      font-size: 10px;
+    }
+  
+    /* MEMO: Will need to change */
+  }
+/*   
+  Max-width for Standard Screens */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 1200px;
+    }
+  
+    /* MEMO: will need to change things like the map  */
+  }
+  
+  /* Additional Styles */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Aristotelica Pro', sans-serif;
+    color: black;
+  } 

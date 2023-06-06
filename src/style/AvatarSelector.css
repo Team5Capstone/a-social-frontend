@@ -1,0 +1,32 @@
+.avatarModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999; /* Ensure the model appears above other content */
+  }
+  
+  .avatarContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .avatarModal h2 {
+    color: white;
+  }
+  
+  img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  /* Add other CSS styles as needed */
+  

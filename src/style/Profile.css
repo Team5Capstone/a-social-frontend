@@ -1,0 +1,50 @@
+/* Profile container */
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  /* Profile photo */
+  .profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  /* Profile information */
+  .profile-info {
+    flex: 1;
+  }
+  
+  .profile-info h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-info h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-info p {
+    margin-bottom: 10px;
+  }
+  
+  /* Edit profile button */
+  .profile-info button {
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #3F00FF;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    
+  }
+  
+  .profile-info button:hover {
+    background-color: #6200EE;
+  }
+  

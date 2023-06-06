@@ -1,0 +1,153 @@
+/* Navbar */
+.navbar {
+  background-color: #d0c3ff;
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px;
+}
+
+.profile-pic {
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropbtn {
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.dropbtn:hover {
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content a:hover {
+  background-color: white;
+  color: #3F00FF;
+}
+
+.dropdown:hover .dropbtn {
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.settings-btn {
+
+  color: black;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.settings-btn:hover {
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.settings-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100px;
+  background-color: white;
+  box-shadow: -2px 0 2px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  padding: 16px;
+}
+
+.settings-sidebar a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 12px 16px;
+}
+
+.settings-sidebar a:hover {
+  background-color: white;
+  color: #3F00FF;
+}
+
+.settings-sidebar h2 {
+  color: #3F00FF;
+  margin-bottom: 16px;
+}
+
+.settings-sidebar .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  color: #3F00FF;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.settings-sidebar {
+  color: white;
+}
+
+.settings-sidebar .menu-links {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.settings-sidebar .menu-links a {
+  color: #3F00FF;
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+  padding: 12px 16px;
+}
+
+.settings-sidebar .menu-links a:last-child {
+  margin-bottom: 0;
+}
+
+.settings-sidebar .sidebar-content {
+  margin-top: 30px
+}
