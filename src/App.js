@@ -22,6 +22,7 @@ import EditProfilePage from './pages/EditProfilePage';
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
+  const [otherUserId, setOtherUserId] = useState('')
 
   return (
     <div className="App">
@@ -32,9 +33,9 @@ function App() {
           <Route path="/" element={<Landing setSignedIn={setSignedIn} />} />
           <Route path="/signup" element={<SignUp setSignedIn={setSignedIn} />} />
           <Route path="/users" element={<User />} />
-          <Route path="/profile" element={<SafeSpace />} />
+          <Route path="/profile" element={<SafeSpace otherUserId={otherUserId}/>} />
           <Route path="/editProfile" element={<EditProfilePage />} />
-          <Route path="/forums" element={<Forums />} />
+          <Route path="/forums" element={<Forums setOtherUserId={setOtherUserId} />} />
           {/* <Route exact path="/forums/:id" element={<ShowPost />} /> */}
           <Route path="/forums/new" element={<NewForum />} />
           <Route path="/myPosts" element={<Posts />} />

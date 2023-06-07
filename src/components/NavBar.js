@@ -15,14 +15,9 @@ function NavBar() {
   };
 
   const handleLogout = () => {
-    // Perform logout logic here, such as clearing user data or token
-    localStorage.removeItem('user');
-  
-    // Set the loggedIn state to false
-    setLoggedIn(false);
-  
-    // Redirect to the landing page
-    navigate('/'); // Navigate to the landing page
+    window.localStorage.removeItem('a-social')
+    setLoggedIn(false)
+    navigate('/')
   };
   
   return (

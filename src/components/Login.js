@@ -28,7 +28,7 @@ function Login() {
       const data = response.data;
   
       if (response.status === 201) { // Change the status check to 201
-        localStorage.setItem('a-social', JSON.stringify(data)); // Store the entire data object
+        localStorage.setItem('a-social', JSON.stringify(data.id)); // Store the entire data object
         navigate('/profile');
       } else {
         setErrorMessage(data.message);

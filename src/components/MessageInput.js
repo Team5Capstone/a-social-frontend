@@ -1,29 +1,36 @@
-import React, { useState } from 'react';
+// import React, {useEffect, useState } from 'react';
+// import io from "socket.io-client";
 
-function MessageInput() {
-  const [inputValue, setInputValue] = useState('');
+// const socket = io.connect("http://localhost:3001");
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+// function MessageInput() {
+//     const [message, setMessage] = useState("");
+//     const [messageReceived, setMessageReceived] = useState("");
+  
+//     const sendMessage = () => {
+//       socket.emit("send_message", { message });
+//     };
+  
+//     useEffect(() => {
+//       socket.on("receive_message", (data) => {
+//         setMessageReceived(data.message);
+//       });
+//     }, [socket]);
+//     return (
+//       <div className="messages">
+//         <input
+//           placeholder="Message..."
+//           onChange={(event) => {
+//             setMessage(event.target.value);
+//           }}
+//         />
+//         <button onClick={sendMessage}> Send Message</button>
+//         <h1> Message:</h1>
+//         {messageReceived}
+//       </div>
+//     );
+//   }
+  
 
-  const handleSendMessage = () => {
-    // Implement the logic to send the message using Firebase or any other method
-    console.log('Sending message:', inputValue);
-    setInputValue('');
-  };
 
-  return (
-    <div className="message-input">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Type your message..."
-      />
-      <button onClick={handleSendMessage}>Send</button>
-    </div>
-  );
-}
-
-export default MessageInput;
+// export default MessageInput;
