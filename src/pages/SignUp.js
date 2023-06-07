@@ -45,7 +45,7 @@ const SignUp = () => {
     const ageInYears = Math.floor(ageDifference / (1000 * 60 * 60 * 24 * 365));
     return ageInYears >= 18;
   }
-
+ console.log(API)
   return (
     <div className="landing-container">
       <h2 className="logo">Sign Up Page</h2>

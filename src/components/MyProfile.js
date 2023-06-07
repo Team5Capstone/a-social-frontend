@@ -11,7 +11,7 @@ function MyProfile(props) {
   const avatar = searchParams.get('avatar');
 
   useEffect(() => {
-    const userData = window.localStorage.getItem('myUser');
+    const userData = window.localStorage.getItem('a-social');
     if (userData) {
       setUser(JSON.parse(userData));
     }
@@ -28,16 +28,16 @@ function MyProfile(props) {
     <div className="profile-container">
       <ProfilePicture />
       <div className="profile-info">
-        <h1>{user.data && user.data.username}</h1>
-        <h3>{user.data && user.data.title}</h3>
+        <h1>{user.username}</h1>
+        <h3>{user.title}</h3>
         <p>
-          <strong>My Name Is:</strong> {user.data && user.data.first_name && user.data.last_name}
+          <strong>My Name Is:</strong> {user.first_name} {user.last_name}
         </p>
         <p>
-          <strong>My Pronouns Are:</strong> {user.data && user.data.pronouns}
+          <strong>My Pronouns Are:</strong> {user.pronouns}
         </p>
         <p>
-          <strong>About Me:</strong> {user.data && user.data.about_me}
+          <strong>About Me:</strong> {user.about_me}
         </p>
         <Link to="/editProfile">
           <button>Edit Profile</button>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API = process.env.REACT_APP_API_URL;
+
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,16 +19,16 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/`, {
+      const response = await axios.post(`${API}/users/login`, {
         email,
         password,
       });
       const data = response.data;
-
-      if (response.status === 200) {
-        localStorage.setItem('user', JSON.stringify(data.user));
+  
+      if (response.status === 201) { // Change the status check to 201
+        localStorage.setItem('a-social', JSON.stringify(data)); // Store the entire data object
         navigate('/profile');
       } else {
         setErrorMessage(data.message);
@@ -34,7 +36,7 @@ function Login() {
     } catch (error) {
       console.error('Error:', error);
     }
-  };
+  };  
 
   const handleSignupRedirect = () => {
     navigate('/signup');

@@ -6,6 +6,7 @@ const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
   let navigate = useNavigate();
+  const id = useParams()
   
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
@@ -17,7 +18,7 @@ function EditProfile() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    const userData = JSON.parse(window.localStorage.getItem("myUser"));
+    const userData = JSON.parse(window.localStorage.getItem("a-social"));
     if (userData) {
       setUser(userData);
       setUpdateUser(userData);
@@ -28,7 +29,7 @@ function EditProfile() {
     axios
       .put(`${API}/users/${updatedUser.id}`, updatedUser) 
       .then(() => {
-        window.localStorage.setItem("myUser", JSON.stringify(updatedUser));
+        window.localStorage.setItem("a-social", JSON.stringify(updatedUser));
         navigate(`/profile`);
       })
       .catch((error) => console.error(error));

@@ -39,7 +39,7 @@ function App() {
           <Route path="/forums/new" element={<NewForum />} />
           <Route path="/myPosts" element={<Posts />} />
           <Route path="/messages" element={<DirectMessages />} />
-          <Route path="/locations" element={<Map />} />
+          <Route path="/maps" element={<Map />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
