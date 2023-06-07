@@ -9,7 +9,7 @@ import SafeSpace from './pages/SafeSpace';
 import DirectMessages from './pages/DirectMessages';
 import Map from './pages/Map';
 import Journal from './pages/Journal';
-import ShowPost from './pages/ShowPost';
+// import ShowPost from './pages/ShowPost';
 import FourOFour from './pages/Four0Four';
 
 // COMPONENTS
@@ -19,6 +19,7 @@ import './App.css';
 import NewForum from './pages/NewForum';
 import User from './pages/User';
 import EditProfilePage from './pages/EditProfilePage';
+import PostDetails from './components/PostDetails';
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -35,7 +36,7 @@ function App() {
           <Route path="/profile" element={<SafeSpace />} />
           <Route path="/editProfile" element={<EditProfilePage />} />
           <Route path="/forums" element={<Forums />} />
-          {/* <Route exact path="/forums/:id" element={<ShowPost />} /> */}
+          <Route exact path="/forums/:id" element={<PostDetails />} />
           <Route path="/forums/new" element={<NewForum />} />
           <Route path="/myPosts" element={<Posts />} />
           <Route path="/messages" element={<DirectMessages />} />
