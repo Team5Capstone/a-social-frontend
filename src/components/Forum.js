@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import "../style/AllPost.css" 
+import "../style/Forum.css"; // Import the Forum.css file
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -12,6 +12,7 @@ function Forum({ setOtherUserId }) {
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Latest');
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   const handleAviClick = (e) => {
     setOtherUserId(e.target.value);
@@ -37,6 +38,19 @@ function Forum({ setOtherUserId }) {
     return dateA - dateB;
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 200) {
+      setShowBackToTop(true);
+    } else {
+      setShowBackToTop(false);
+    }
+  };
+
   useEffect(() => {
     axios
       .get(`${API}/forums`)
@@ -51,6 +65,12 @@ function Forum({ setOtherUserId }) {
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   let filteredForums = [...forums];
@@ -61,49 +81,59 @@ function Forum({ setOtherUserId }) {
 
   if (sortBy === 'Oldest') {
     filteredForums.sort(compareByReverseDate);
-    filteredForums.sort(compareByReverseDate);
   } else {
     filteredForums.sort(compareByDate);
-    filteredForums.sort(compareByDate);
   }
-
 
   const changeCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
 
-
   const changeSortBy = (e) => {
     setSortBy(e.target.value);
   };
 
+  const formatDate = (date) => {
+    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
+    return new Date(date).toLocaleDateString(undefined, options);
+  };
+
+  const formatTime = (date) => {
+    const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+    return new Date(date).toLocaleTimeString(undefined, options);
+  };
 
   return (
     <div className="forum-container">
-      <h1>Forum</h1>
+      <h1 className="forum-title">Forum</h1>
       <div className="searchbar">
-        <a href="/forums/new" class="button">Create New Forum</a>
+        <a href="/forums/new" className="button">Create New Forum</a>
       </div>
       <ul className="post-list">
         {filteredForums.map((forum) => {
           const user = findUserById(forum.user_id);
           return (
             <li className="post" key={forum.id}>
-              <button onClick={handleAviClick} value={forum.user_id}>
-                <img src={user ? user.avatar : ''} alt='avatar' />
-              </button>
-              <h1>{user ? user.username : ''} </h1>
-              <h2>{forum.forum_title}</h2>
-              <p>{forum.forum_description}</p>
-              <p>Category: {forum.category}</p>
-              <p>Topics: {forum.forum_topics}</p>
-              <p>Created At: {forum.forum_created_at}</p>
-              <p>{forum.forum_posts}</p>
-              <Link to={`/forums/${forum.id}`}>View Post</Link>
+              <div className="post-details">
+                <h1>{forum.forum_description}</h1>
+                <p>Category: {forum.category}</p>
+                <p>Topics: {forum.forum_topics}</p>
+                <p>Created At: {formatDate(forum.forum_created_at)} {formatTime(forum.forum_created_at)}</p>
+              </div>
+              <div className="post-creator">
+                <h2>Created by: {user ? user.username : ''}</h2>
+                <Link to={`/forums/${forum.id}`}>View Post</Link>
+              </div>
             </li>
           );
         })}
       </ul>
+      <button
+        className={`back-to-top ${showBackToTop ? 'show' : ''}`}
+        onClick={scrollToTop}
+      >
+        &uarr;
+      </button>
     </div>
   );
 }
@@ -111,11 +141,6 @@ function Forum({ setOtherUserId }) {
 export default Forum;
 
 
-// Add a reply button in each forum 
-// should me Create new forum a button
-// Change category names in dropdown
-// add boarder around each form 
-// make header and footer
 
 
 // Add a reply button in each forum 

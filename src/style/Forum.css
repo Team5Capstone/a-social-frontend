@@ -1,83 +1,89 @@
-/* Forum Container */
 .forum-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 16px;
-  }
-  
-  .forum-container h1 {
-    color: black;
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-  
-  /* Filters */
-  .filters {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-  
-  .filters label {
-    color: black;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 16px;
-  }
-  
-  .filters select {
-    padding: 8px;
-    border: none;
-    border-radius: 4px;
-    background-color: #3F00FF;
-    color: #fff;
-    font-size: 16px;
-    margin-right: 16px;
-  }
-  
-  .create-forum-link {
-    color: #3F00FF;
-    font-size: 16px;
-    text-decoration: none;
-    border: 1px solid #3F00FF;
-    border-radius: 4px;
-    padding: 8px 16px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-  }
-  
-  .create-forum-link:hover {
-    background-color: #3F00FF;
-    color: #fff;
-  }
-  
-  /* Post List */
-  .post-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .post {
-    background-color: #fff;
-    border-radius: 4px;
-    padding: 16px;
-    margin-bottom: 16px;
-  }
-  
-  .post h2 {
-    color: #3F00FF;
-    font-size: 20px;
-    margin-bottom: 8px;
-  }
-  
-  .post p {
-    color: #000;
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .post p:last-child {
-    margin-bottom: 0;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.forum-title {
+  color: #3F00FF;
+  font-size: 24px;
+}
+
+.searchbar {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #3F00FF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #6633FF;
+}
+
+.post-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.post {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.post-details {
+  flex: 1;
+}
+
+.post-details h1 {
+  color: #3F00FF;
+  font-size: 20px;
+}
+
+.post-details p {
+  color: black;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.post-details a {
+  color: blue;
+  text-decoration: none;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #3F00FF;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.back-to-top.show {
+  opacity: 1;
+}
