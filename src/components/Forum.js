@@ -108,7 +108,7 @@ function Forum({ setOtherUserId }) {
   );
 }
 
-export default Forums;
+export default Forum;
 
 
 // Add a reply button in each forum 
