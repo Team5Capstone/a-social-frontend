@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ProfilePicture from './ProfilePicture'
 import '../style/Profile.css'
+import '../style/ChatbotModal.css'
+import ChatbotModal from './ChatbotModal';
 
-function MyProfile(props) {
+function MyProfile() {
   const [user, setUser] = useState({});
   const [selectedAvatar, setSelectedAvatar] = useState(null); // Add selectedAvatar state
   const location = useLocation();
@@ -42,6 +44,7 @@ function MyProfile(props) {
         <Link to="/editProfile">
           <button>Edit Profile</button>
         </Link>
+        <ChatbotModal/>
       </div>
     </div>
   );
