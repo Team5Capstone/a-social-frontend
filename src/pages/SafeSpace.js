@@ -1,12 +1,12 @@
 import React from 'react';
-import MyProfile from '../components/MyProfile';
+import Profile from '../components/Profiles';
  
 
-function SafeSpace() {
+function SafeSpace({otherUserId}) {
    
     return (
         <div>
-            <MyProfile />
+            <Profile otherUserId={otherUserId}/>
         </div>
     );
 }

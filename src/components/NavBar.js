@@ -15,7 +15,7 @@ function NavBar() {
   };
 
   const handleLogout = () => {
-    window.localStorage.removeItem('a-socail')
+    window.localStorage.removeItem('a-social')
     setLoggedIn(false)
     navigate('/')
   };

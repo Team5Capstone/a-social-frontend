@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import '../style/Forum.css';
+import { Link, useNavigate } from 'react-router-dom';
+import "../style/AllPost.css" 
 
 const API = process.env.REACT_APP_API_URL;
 
-function Forum() {
+function Forum({ setOtherUserId }) {
   const [forums, setForums] = useState([]);
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Latest');
 
-  useEffect(() => {
-    axios
-      .get(`${API}/forums`)
-      .then((res) => {
-        setForums(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  let filteredForums;
-  if (selectedCategory === 'All') {
-    filteredForums = forums;
-  } else {
-    filteredForums = forums.filter((forum) => forum.category_name === selectedCategory);
+  const handleAviClick = (e) => {
+    setOtherUserId(e.target.value);
+    navigate('/profile');
+    setTimeout(() => {
+      setOtherUserId('');
+    }, 30000);
   }
+
+  const findUserById = (userId) => {
+    return users.find((user) => user.id === userId);
+  };
 
   const compareByDate = (a, b) => {
     const dateA = new Date(a.forum_created_at);
@@ -38,66 +37,85 @@ function Forum() {
     return dateA - dateB;
   };
 
+  useEffect(() => {
+    axios
+      .get(`${API}/forums`)
+      .then((res) => {
+        setForums(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`${API}/users`)
+      .then((res) => {
+        setUsers(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  let filteredForums = [...forums];
+
+  if (selectedCategory !== 'All') {
+    filteredForums = filteredForums.filter((forum) => forum.category_name === selectedCategory);
+  }
+
   if (sortBy === 'Oldest') {
+    filteredForums.sort(compareByReverseDate);
     filteredForums.sort(compareByReverseDate);
   } else {
     filteredForums.sort(compareByDate);
+    filteredForums.sort(compareByDate);
   }
+
 
   const changeCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
 
+
   const changeSortBy = (e) => {
     setSortBy(e.target.value);
   };
 
+
   return (
     <div className="forum-container">
       <h1>Forum</h1>
-      <div className="filters">
-        <label>
-          Category:
-          <select value={selectedCategory} onChange={changeCategory}>
-            <option value="All">All Categories</option>
-            <option value="Venting and Support">Venting and Support</option>
-            <option value="Accessibility">Accessibility</option>
-            <option value="Vibe Check">Vibe Check</option>
-            <option value="Family">Family</option>
-            <option value="Hobbies">Hobbies</option>
-            <option value="General Chat">General Chat</option>
-          </select>
-        </label>
-        <label>
-          Sort By:
-          <select value={sortBy} onChange={changeSortBy}>
-            <option value="Latest">Latest</option>
-            <option value="Oldest">Oldest</option>
-          </select>
-        </label>
-        <Link to="/forums/new">Create New Forum</Link>
+      <div className="searchbar">
+        <a href="/forums/new" class="button">Create New Forum</a>
       </div>
       <ul className="post-list">
-        {filteredForums.map((forum) => (
-          <li className="post" key={forum.id}>
-            <h2>{forum.forum_title}</h2>
-            <p>{forum.forum_description}</p>
-            <p>Category: {forum.category_name}</p>
-            <p>Topics: {forum.forum_topics}</p>
-            <p>Created At: {forum.forum_created_at}</p>
-            <p>{forum.forum_posts}</p>
-            <Link to={`/forums/${forum.id}`}>View Post</Link>
-          </li>
-        ))}
+        {filteredForums.map((forum) => {
+          const user = findUserById(forum.user_id);
+          return (
+            <li className="post" key={forum.id}>
+              <button onClick={handleAviClick} value={forum.user_id}>
+                <img src={user ? user.avatar : ''} alt='avatar' />
+              </button>
+              <h1>{user ? user.username : ''} </h1>
+              <h2>{forum.forum_title}</h2>
+              <p>{forum.forum_description}</p>
+              <p>Category: {forum.category}</p>
+              <p>Topics: {forum.forum_topics}</p>
+              <p>Created At: {forum.forum_created_at}</p>
+              <p>{forum.forum_posts}</p>
+              <Link to={`/forums/${forum.id}`}>View Post</Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 }
 
-export default Forum;
+export default Forums;
 
 
-
+// Add a reply button in each forum 
+// should me Create new forum a button
+// Change category names in dropdown
+// add boarder around each form 
+// make header and footer
 
 
 // Add a reply button in each forum 
