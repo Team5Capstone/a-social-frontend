@@ -60,7 +60,7 @@ function Profile({ otherUserId }) {
           <Link to="/editProfile">
             <button>Edit Profile</button>
           </Link>
-          <ChatBotModal/>
+          <ChatBotModal className="chatbot-container"/>
         </div>
         </>
       ) : (
