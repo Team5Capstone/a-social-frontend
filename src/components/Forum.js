@@ -108,14 +108,7 @@ function Forum({ setOtherUserId }) {
   );
 }
 
-export default Forums;
-
-
-// Add a reply button in each forum 
-// should me Create new forum a button
-// Change category names in dropdown
-// add boarder around each form 
-// make header and footer
+export default Forum;
 
 
 // Add a reply button in each forum 
