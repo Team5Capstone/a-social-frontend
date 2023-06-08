@@ -1,16 +1,14 @@
-import React from 'react';
-import Forum from '../components/Forum';
-import ForumNewForm from '../components/ForumNewForm';
-import "../style/AllPost.css" 
+// import React from 'react';
+// import Forum from '../components/Forum';
+// import "../style/AllPost.css" 
 
-function AllPosts() {
-    return (
-        <div>
-            <h1>A-SOCIAL Forum</h1>
-            <Forum />
-            <ForumNewForm />
-        </div>
-    );
-}
+// function AllPosts() {
+//     return (
+//         <div>
+//             <h1>A-SOCIAL Forum</h1>
+//             <Forum setOtherUserId={handleSetOtherUserId}/>
+//         </div>
+//     );
+// }
 
-export default AllPosts;
+// export default AllPosts;

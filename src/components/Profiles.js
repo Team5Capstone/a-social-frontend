@@ -84,6 +84,6 @@ function Profile({ otherUserId }) {
       )}
     </div>
   );
-}
+} 
 
 export default Profile;
