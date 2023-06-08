@@ -61,17 +61,22 @@ function Forum({ setOtherUserId }) {
 
   if (sortBy === 'Oldest') {
     filteredForums.sort(compareByReverseDate);
+    filteredForums.sort(compareByReverseDate);
   } else {
     filteredForums.sort(compareByDate);
+    filteredForums.sort(compareByDate);
   }
+
 
   const changeCategory = (e) => {
     setSelectedCategory(e.target.value);
   };
 
+
   const changeSortBy = (e) => {
     setSortBy(e.target.value);
   };
+
 
   return (
     <div className="forum-container">
