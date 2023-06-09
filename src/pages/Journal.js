@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../style/Journal.css';
 
@@ -15,6 +14,7 @@ function Journal() {
     user_id: Number(localStorage.getItem('a-social'))
   });
   const [showModal, setShowModal] = useState(false);
+  const [selectedEntryId, setSelectedEntryId] = useState(null);
 
   useEffect(() => {
     axios
@@ -45,6 +45,63 @@ function Journal() {
     setShowModal(false);
   };
 
+  const handleEditEntry = () => {
+    const { id, title, mood, date, content, user_id } = newEntry;
+
+    axios
+      .put(`${API}/journals/${id}`, {
+        title,
+        mood,
+        date,
+        content,
+        user_id
+      })
+      .then(() => {
+        const updatedEntries = journalEntries.map((entry) =>
+          entry.id === id ? { ...entry, title, mood, date, content } : entry
+        );
+        setJournalEntries(updatedEntries);
+        setNewEntry({
+          id: null,
+          title: '',
+          mood: '',
+          date: '',
+          content: '',
+          user_id: Number(localStorage.getItem('a-social'))
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    setShowModal(false);
+  };
+
+  const handleDeleteEntry = (entryId) => {
+    axios
+      .delete(`${API}/journals/${entryId}`)
+      .then(() => {
+        const updatedEntries = journalEntries.filter(
+          (entry) => entry.id !== entryId
+        );
+        setJournalEntries(updatedEntries);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const openEditModal = (entry) => {
+    setNewEntry({
+      id: entry.id,
+      title: entry.title,
+      mood: entry.mood,
+      date: entry.date,
+      content: entry.content,
+      user_id: Number(localStorage.getItem('a-social'))
+    });
+    setShowModal(true);
+  };
+
   return (
     <div>
       <h1>My Journal</h1>
@@ -56,6 +113,8 @@ function Journal() {
               <p>{entry.mood}</p>
               <p>{entry.date}</p>
               <p>{entry.content}</p>
+              <button onClick={() => openEditModal(entry)}>Edit</button>
+              <button onClick={() => handleDeleteEntry(entry.id)}>Delete</button>
             </div>
           );
         }
@@ -65,7 +124,7 @@ function Journal() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <h2>Create New Journal Entry</h2>
+            <h2>{!selectedEntryId ? 'Edit' : 'Create New'} Journal Entry</h2>
             <label htmlFor="title">Title:</label>
             <input
               type="text"
@@ -105,7 +164,15 @@ function Journal() {
                 setNewEntry({ ...newEntry, content: e.target.value })
               }
             ></textarea>
-            <button onClick={handleCreateEntry}>Save Entry</button>
+            <button
+              onClick={() =>
+                selectedEntryId
+                  ? handleEditEntry(selectedEntryId)
+                  : handleCreateEntry()
+              }
+            >
+              {selectedEntryId ? 'Update Entry' : 'Save Entry'}
+            </button>
             <button onClick={() => setShowModal(false)}>Cancel</button>
           </div>
         </div>
@@ -115,6 +182,7 @@ function Journal() {
 }
 
 export default Journal;
+
 
 
 

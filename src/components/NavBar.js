@@ -82,6 +82,7 @@ function NavBar() {
             <button className="logout-link" onClick={handleLogout}>
               Logout
             </button>
+            <Link to='/about'>Who We Are (A-Social) </Link>
             <Link to="/faq" className="faq-link">
               FAQ
             </Link>
