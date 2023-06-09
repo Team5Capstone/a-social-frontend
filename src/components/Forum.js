@@ -140,9 +140,6 @@ function Forum({ setOtherUserId }) {
 
 export default Forum;
 
-
-
-
 // Add a reply button in each forum 
 // should me Create new forum a button
 // Change category names in dropdown
