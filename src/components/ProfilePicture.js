@@ -47,6 +47,10 @@ const AvatarSelector = () => {
     localStorage.setItem('selectedAvatar', avatarSrc); // Store the selected avatar in localStorage
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
       <button className='' onClick={handleProfilePictureClick}>
@@ -55,6 +59,9 @@ const AvatarSelector = () => {
       {showModal && (
         <div className='avatarModal'>
           <h2>Select an avatar</h2>
+          <button className="closeButton" onClick={handleCloseModal}>
+            X
+          </button>
           <div className='avatarContainer'>
             {avatarOptions.map((avatar, index) => (
               <button 

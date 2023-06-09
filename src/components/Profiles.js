@@ -4,8 +4,9 @@ import ProfilePicture from './ProfilePicture'
 import ChatBotModal from './ChatbotModal'
 import '../style/Profile.css'
 import axios from 'axios';
+import '../style/Profile.css';
 
-const API = process.env.REACT_APP_API_URL
+const API = process.env.REACT_APP_API_URL;
 
 function Profile({ otherUserId }) {
   const [user, setUser] = useState({});
@@ -19,27 +20,24 @@ function Profile({ otherUserId }) {
     if (!otherUserId) {
       axios
       .get(`${API}/users/${userId}`)
-      .then((res)=>{
-        setUser(res.data)
-      }) 
+      .then((res) => {
+        setUser(res.data);
+      });
     } else {
-      axios
-      .get(`${API}/users/${otherUserId}`)
-      .then((res)=>{
-        setUser(res.data)
-      }) 
+      axios.get(`${API}/users/${otherUserId}`)
+      .then((res) => {
+        setUser(res.data);
+      });
     }
-  }, []);
+  }, [otherUserId]); 
 
-// JSON.parse(userData)
-// console.log(user)
   useEffect(() => {
-    const storedAvatar = localStorage.getItem('selectedAvatar'); // Retrieve selected avatar from local storage
+    const storedAvatar = localStorage.getItem('selectedAvatar');
     if (storedAvatar) {
       setSelectedAvatar(storedAvatar);
     }
   }, []);
- console.log(otherUserId)
+
   return (
     <div className="profile-container">
       {!otherUserId ? (
@@ -65,27 +63,27 @@ function Profile({ otherUserId }) {
         </>
       ) : (
         <>
-        <img src={user.avatar} alt='avatar'/>
-        <div className="profile-info">
-        <h1>{user.username}</h1>
-        <h3>{user.title}</h3>
-        <p>
-          <strong>My Name Is:</strong> {user.first_name} {user.last_name}
-        </p>
-        <p>
-          <strong>My Pronouns Are:</strong> {user.pronouns}
-        </p>
-        <p>
-          <strong>About Me:</strong> {user.about_me}
-        </p>
-        <Link to="/inbox">
-          <button>Message</button>
-        </Link>
-      </div>
+          <img src={user.avatar} alt="avatar" />
+          <div className="profile-info">
+            <h1>{user.username}</h1>
+            <h3>{user.title}</h3>
+            <p>
+              <strong>My Name Is:</strong> {user.first_name} {user.last_name}
+            </p>
+            <p>
+              <strong>My Pronouns Are:</strong> {user.pronouns}
+            </p>
+            <p>
+              <strong>About Me:</strong> {user.about_me}
+            </p>
+            <Link to="/inbox">
+              <button>Message</button>
+            </Link>
+          </div>
         </>
       )}
     </div>
   );
-} 
+}
 
 export default Profile;

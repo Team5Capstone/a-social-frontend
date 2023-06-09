@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import "../style/Forum.css"; // Import the Forum.css file
+import "../style/Forum.css"; 
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -13,6 +13,7 @@ function Forum({ setOtherUserId }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Latest');
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [selectedForumId, setSelectedForumId] = useState(null);
 
   const handleAviClick = (e) => {
     setOtherUserId(e.target.value);
@@ -103,6 +104,19 @@ function Forum({ setOtherUserId }) {
     return new Date(date).toLocaleTimeString(undefined, options);
   };
 
+  const handleDeleteForum = (forumId) => {
+    setSelectedForumId(forumId);
+    axios
+      .delete(`${API}/forums/${forumId}`)
+      .then((res) => {
+        setForums(forums.filter((forum) => forum.id !== forumId));
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setSelectedForumId(null);
+      });
+  };
+
   return (
     <div className="forum-container">
       <h1 className="forum-title">Forum</h1>
@@ -123,6 +137,12 @@ function Forum({ setOtherUserId }) {
               <div className="post-creator">
                 <h2>Created by: {user ? user.username : ''}</h2>
                 <Link to={`/forums/${forum.id}`}>View Post</Link>
+                <button
+                  onClick={() => handleDeleteForum(forum.id)}
+                  disabled={selectedForumId === forum.id}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           );
@@ -139,6 +159,7 @@ function Forum({ setOtherUserId }) {
 }
 
 export default Forum;
+
 
 // Add a reply button in each forum 
 // should me Create new forum a button
