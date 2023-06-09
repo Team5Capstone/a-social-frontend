@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProfilePicture from "./ProfilePicture";
 const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
   let navigate = useNavigate();
-  const id = useParams()
-  
+  const { id } = useParams();
+
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
     last_name: "",
@@ -15,34 +15,33 @@ function EditProfile() {
     pronouns: "",
     about_me: "",
   });
-  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const userData = JSON.parse(window.localStorage.getItem("a-social"));
-    if (userData) {
-      setUser(userData);
-      setUpdateUser(userData);
-    }
-  }, []);
-
-  const updateUserProfile = (updatedUser) => {
     axios
-      .put(`${API}/users/${updatedUser.id}`, updatedUser) 
+      .get(`${API}/users/${id}`)
+      .then((response) => {
+        const userData = response.data;
+        setUpdateUser(userData);
+      })
+      .catch((error) => console.error(error));
+  }, [id]);
+
+  const updateUserProfile = () => {
+    axios
+      .put(`${API}/users/${id}`, updateUser)
       .then(() => {
-        window.localStorage.setItem("a-social", JSON.stringify(updatedUser));
         navigate(`/profile`);
       })
       .catch((error) => console.error(error));
   };
-  
 
   const handleTextChange = (event) => {
-    setUpdateUser({ ...updateUser, [event.target.id]: event.target.value });
+    setUpdateUser({ ...updateUser, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateUserProfile(user);
+    updateUserProfile();
   };
 
   return (
@@ -96,4 +95,6 @@ function EditProfile() {
 }
 
 export default EditProfile;
+
+
 

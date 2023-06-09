@@ -1,10 +1,10 @@
 import React from 'react';
-import ForumNewForm from '../components/ForumNewForm';
+import CreateForum from '../components/CreateForum';
 
 function NewForum() {
     return (
         <div>
-            <ForumNewForm />
+            <CreateForum />
         </div>
     );
 }
