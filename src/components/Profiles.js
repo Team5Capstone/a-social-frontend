@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import ProfilePicture from './ProfilePicture'
+import ChatBotModal from './ChatbotModal'
 import '../style/Profile.css'
 import axios from 'axios';
 
@@ -59,6 +60,7 @@ function Profile({ otherUserId }) {
           <Link to="/editProfile">
             <button>Edit Profile</button>
           </Link>
+          <ChatBotModal className="chatbot-container"/>
         </div>
         </>
       ) : (
