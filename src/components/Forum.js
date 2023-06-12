@@ -120,7 +120,7 @@ function Forum({ setOtherUserId }) {
   return (
     <div className="forum-container">
       <h1 className="forum-title">Forum</h1>
-      <div className="searchbar">
+      <div className="create">
         <a href="/forums/new" className="button">Create New Forum</a>
       </div>
       <ul className="post-list">
@@ -136,10 +136,12 @@ function Forum({ setOtherUserId }) {
               </div>
               <div className="post-creator">
                 <h2>Created by: {user ? user.username : ''}</h2>
-                <Link to={`/forums/${forum.id}`}>View Post</Link>
+                <button className='other-button'><Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}>View Post</Link></button>
                 <button
+                  className='other-button'
                   onClick={() => handleDeleteForum(forum.id)}
                   disabled={selectedForumId === forum.id}
+                  style={{ marginLeft: '4px' }}
                 >
                   Delete
                 </button>
