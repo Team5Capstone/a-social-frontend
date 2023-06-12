@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../style/ChatbotModal.css';
-import babybot from '../assets/PLEXI.png'
+import babybot from '../assets/PLEXI.png';
 
 function PlexiBrain() {
   const recognition = useRef(null);
@@ -37,6 +37,21 @@ function PlexiBrain() {
       setResponseMessage('Sure! Opening Spotify!');
       speakResponse('Sure! Opening Spotify!');
       window.open('https://open.spotify.com/track/05wIrZSwuaVWhcv5FfqeH0?si=32dca459f79a4460', '_blank');
+    } else if (lowercaseSpeech.includes('how are you feeling today')) {
+      setResponseMessage("I'm an AI, so I don't have feelings, but I'm here to help you. How can I assist you today?");
+      speakResponse("I'm an AI, so I don't have feelings, but I'm here to help you. How can I assist you today?");
+    } else if (lowercaseSpeech.includes('what can you help me with')) {
+      setResponseMessage('I can assist you with wellness-related topics, suggest relaxation techniques, or provide information about healthy habits. How can I assist you today?');
+      speakResponse('I can assist you with wellness-related topics, suggest relaxation techniques, or provide information about healthy habits. How can I assist you today?');
+    } else if (lowercaseSpeech.includes('tell me about your day')) {
+      setResponseMessage("As an AI, I don't experience days. But I'm here to chat with you and provide support. How can I assist you today?");
+      speakResponse("As an AI, I don't experience days. But I'm here to chat with you and provide support. How can I assist you today?");
+    } else if (lowercaseSpeech.includes('relaxation techniques')) {
+      setResponseMessage('Sure! Here are a few relaxation techniques you can try: deep breathing, progressive muscle relaxation, guided meditation, or listening to calming music. Let me know if you want more information on any of these techniques!');
+      speakResponse('Sure! Here are a few relaxation techniques you can try: deep breathing, progressive muscle relaxation, guided meditation, or listening to calming music. Let me know if you want more information on any of these techniques!');
+    } else if (lowercaseSpeech.includes('my goals for today')) {
+      setResponseMessage('That sounds great! What are your goals for today?');
+      speakResponse('That sounds great! What are your goals for today?');
     } else {
       setResponseMessage("Sorry, I didn't understand.");
       speakResponse("Sorry, I didn't understand.");
@@ -61,15 +76,11 @@ function PlexiBrain() {
 
   return (
     <div className="chatbot-container">
+        <h1 className="chatbot-heading">PLEXI</h1>
       <aside>
-        <img
-          src={babybot}
-          className="chat-image"
-          alt="Chatbot"
-        />
+        <img src={babybot} className="chat-image" alt="Chatbot" />
       </aside>
       <main>
-        <h1 className="chatbot-heading">Chatbot Page</h1>
         <p className="chatbot-message">{responseMessage}</p>
         {!isListening ? (
           <button className="start-button" onClick={startSpeechRecognition}>

@@ -133,11 +133,12 @@
   }
   
   .chatbot-heading {
-    font-size: 28px;
+    font-size: 30px;
+    font-family: 'Gill Sans',  sans-serif;
     margin-bottom: 10px;
     color: black;
   }
-  
+   
   .chatbot-message {
     font-size: 18px;
     color: black;
