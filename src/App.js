@@ -5,7 +5,6 @@ import SignUp from './pages/SignUp';
 import Posts from './pages/Posts';
 import SafeSpace from './pages/SafeSpace';
 import DirectMessages from './pages/DirectMessages';
-import Map from './pages/Map';
 import Journal from './pages/Journal';
 import FourOFour from './pages/Four0Four';
 import NavBar from './components/NavBar';
@@ -15,6 +14,7 @@ import NewForum from './pages/NewForum';
 import User from './pages/User';
 import EditProfilePage from './pages/EditProfilePage';
 import PostDetails from './components/PostDetails';
+import Plexi from './pages/Plexi';
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
           <Route path="/forums/new" element={<NewForum />} />
           <Route path="/myPosts" element={<Posts />} />
           <Route path="/messages" element={<DirectMessages />} />
-          <Route path="/maps" element={<Map />} />
+          <Route path="/plexi" element={<Plexi />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
