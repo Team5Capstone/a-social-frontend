@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../style/ChatbotModal.css';
-import { Link } from 'react-router-dom';
 
 const ChatbotModal = () => {
   const [showModal, setShowModal] = useState(false);
