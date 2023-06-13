@@ -16,6 +16,10 @@ const SignUp = () => {
     dob: '',
   });
 
+  const handleLogInRedirect = () => {
+    navigate('/');
+  };
+
   function handleTextChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
@@ -103,7 +107,7 @@ const SignUp = () => {
         </form>
         <div className="signup-link">
           <p>Already have an account?</p>
-          <button>Log In</button>
+          <button onClick={handleLogInRedirect}>Log In</button>
         </div>
       </div>
     </div>

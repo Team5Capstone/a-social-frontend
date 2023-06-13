@@ -5,7 +5,6 @@ import SignUp from './pages/SignUp';
 import MyPosts from './pages/MyPosts';
 import SafeSpace from './pages/SafeSpace';
 import DirectMessages from './pages/DirectMessages';
-import Map from './pages/Map';
 import Journal from './pages/Journal';
 import ForumDetail from './pages/ForumDetail';
 import FourOFour from './pages/Four0Four';
@@ -16,6 +15,7 @@ import NewForum from './pages/NewForum';
 import AboutUs from './pages/AboutUs';
 import EditProfilePage from './pages/EditProfilePage';
 import PostDetails from './components/PostDetails';
+import Plexi from './pages/Plexi';
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
@@ -36,7 +36,7 @@ function App() {
           <Route path="/forums/new" element={<NewForum />} />
           <Route path="/myPosts" element={<MyPosts />} />
           <Route path="/messages" element={<DirectMessages />} />
-          <Route path="/maps" element={<Map />} />
+          <Route path="/plexi" element={<Plexi />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="*" element={<FourOFour />} />
         </Routes>
