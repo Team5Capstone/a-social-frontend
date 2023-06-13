@@ -26,7 +26,7 @@ function NavBar() {
       <div className="settings-sidebar">
         <div className="sidebar-header">
           <button className="close-btn" onClick={handleSettingsClick}>
-            X
+             ☞
           </button>
         </div>
         <div className="sidebar-content">
@@ -34,7 +34,7 @@ function NavBar() {
             Logout
           </button>
           <Link to="/faq" className="faq-link">
-            FAQ
+            TOS
           </Link>
         </div>
       </div>
@@ -97,8 +97,7 @@ function NavBar() {
       {sidebar}
 
       <footer className="footer">
-        {/* Your footer content goes here */}
-        <p>&copy; Natasha Riddck & Triane Peart. All rights reserved.</p>
+        <p>&copy; A-SOCIAL All rights reserved.</p>
       </footer>
     </React.Fragment>
 
