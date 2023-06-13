@@ -15,7 +15,19 @@ function Journal() {
   });
   const [showModal, setShowModal] = useState(false);
   const [selectedEntryId, setSelectedEntryId] = useState(null);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 200) {
+      setShowBackToTop(true);
+    } else {
+      setShowBackToTop(false);
+    }
+  };
   useEffect(() => {
     axios
       .get(`${API}/journals`)
@@ -23,7 +35,25 @@ function Journal() {
         setJournalEntries(res.data);
       })
       .catch((err) => console.log(err));
+
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  const formatDate = (date) => {
+    const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
+    return new Date(date).toLocaleDateString(undefined, options);
+  };
+
+  const formatTime = (date) => {
+    const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+    return new Date(date).toLocaleTimeString(undefined, options);
+  }; 
+  
 
   const handleCreateEntry = () => {
     axios
@@ -90,6 +120,7 @@ function Journal() {
         console.log(err);
       });
   };
+
   const openEditModal = (entry) => {
     setNewEntry({
       id: entry.id,
@@ -103,24 +134,29 @@ function Journal() {
   };
 
   return (
-    <div>
-      <h1>My Journal</h1>
-      {journalEntries.map((entry) => {
-        if (entry.user_id === newEntry.user_id) {
-          return (
-            <div key={entry.id}>
-              <p>{entry.title}</p>
-              <p>{entry.mood}</p>
-              <p>{entry.date}</p>
-              <p>{entry.content}</p>
-              <button onClick={() => openEditModal(entry)}>Edit</button>
-              <button onClick={() => handleDeleteEntry(entry.id)}>Delete</button>
+    <div className="page-content">
+     <h1 className="title">My Journal</h1>
+    <button className="create" onClick={() => setShowModal(true)}>Create New Entry</button>
+        {journalEntries.map((entry) => {
+          if (entry.user_id === newEntry.user_id) {
+            return (
+              <div className="page">
+              <div className="marge" />
+              <div className="entry" key={entry.id}>
+                <p>{entry.title}</p>
+                <p>{entry.mood}</p>
+                <p>{formatDate(entry.date)}</p>
+                <p>{entry.content}</p>
+                <div className="button-container">
+                  <button className="button" onClick={() => openEditModal(entry)}>Edit</button>
+                  <button className="button" onClick={() => handleDeleteEntry(entry.id)} style={{ marginLeft: '4px' }}>Delete</button>
+                </div>
+              </div>
             </div>
-          );
-        }
-        return null;
-      })}
-      <button onClick={() => setShowModal(true)}>Create New Entry</button>
+            );
+          }
+          return null;
+        })}
       {showModal && (
         <div className="modal">
           <div className="modal-content">
@@ -164,29 +200,30 @@ function Journal() {
                 setNewEntry({ ...newEntry, content: e.target.value })
               }
             ></textarea>
-            <button
-              onClick={() =>
-                selectedEntryId
-                  ? handleEditEntry(selectedEntryId)
-                  : handleCreateEntry()
-              }
-            >
-              {selectedEntryId ? 'Update Entry' : 'Save Entry'}
-            </button>
-            <button onClick={() => setShowModal(false)}>Cancel</button>
+            <div className="button-container">
+              <button
+                className="button"
+                onClick={() =>
+                  selectedEntryId
+                    ? handleEditEntry(selectedEntryId)
+                    : handleCreateEntry()
+                }
+              >
+                {selectedEntryId ? 'Update Entry' : 'Save Entry'}
+              </button>
+              <button className="button" onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
           </div>
         </div>
       )}
+      <button
+        className={`back-to-top ${showBackToTop ? 'show' : ''}`}
+        onClick={scrollToTop}
+      >
+        &uarr;
+      </button>
     </div>
   );
 }
 
 export default Journal;
-
-
-
-
-
-
-
-
