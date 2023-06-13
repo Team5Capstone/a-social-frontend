@@ -92,6 +92,7 @@ function NavBar() {
           </Link>
         </nav>
       )}
+
       <div className="content" />
 
       {sidebar}
@@ -100,27 +101,6 @@ function NavBar() {
         <p>&copy; A-SOCIAL All rights reserved.</p>
       </footer>
     </React.Fragment>
-
-      {showSettings && (
-        <div className="settings-sidebar">
-          <div className="sidebar-header">
-            <button className="close-btn" onClick={handleSettingsClick}>
-              X
-            </button>
-          </div>
-          <div className="sidebar-content">
-            <button className="logout-link" onClick={handleLogout}>
-              Logout
-            </button>
-            <Link to='/about'>Who We Are (A-Social) </Link>
-            <Link to="/faq" className="faq-link">
-              FAQ
-            </Link>
-          </div>
-        </div>
-      )}
-    </>
-
   );
 }
 
