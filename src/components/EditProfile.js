@@ -6,8 +6,7 @@ const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
   let navigate = useNavigate();
-  const { id } = useParams();
-
+  const userId = window.localStorage.getItem('a-social');
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
     last_name: "",
@@ -18,17 +17,18 @@ function EditProfile() {
 
   useEffect(() => {
     axios
-      .get(`${API}/users/${id}`)
+      .get(`${API}/users/${userId}`)
       .then((response) => {
         const userData = response.data;
         setUpdateUser(userData);
+        console.log(updateUser)
       })
       .catch((error) => console.error(error));
-  }, [id]);
+  }, [userId]);
 
   const updateUserProfile = () => {
     axios
-      .put(`${API}/users/${id}`, updateUser)
+      .put(`${API}/users/${userId}`, updateUser)
       .then(() => {
         navigate(`/profile`);
       })
@@ -96,5 +96,15 @@ function EditProfile() {
 
 export default EditProfile;
 
-
+//add something to fill space
+//fix profile where avatar is user.id avatar
+//fix create new forum button
+//fix category
+//fix topics
+//delete should only show if you are looking at your post
+//remove messages
+//welness canpansion
+//journal edit css
+//create TOS
+//fix/add about me
 
