@@ -35,8 +35,7 @@ const SignUp = () => {
     axios
       .post(`${API}/users`, user)
       .then((response) => {
-        window.localStorage.setItem('a-social', JSON.stringify(response.data));
-        //This holds the use state use state for the local host it's important and JD approved
+        window.localStorage.setItem('a-social', JSON.stringify(response.data.id));
         navigate('/profile');
       })
       .catch((error) => console.warn('catch error:', error));
