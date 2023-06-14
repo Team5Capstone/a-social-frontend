@@ -94,7 +94,7 @@ console.log(updateUser)
         ></textarea>
 
         <button className="submitButton">Submit</button>
-      </form>
+      </form> 
     </div>
   );
 }
