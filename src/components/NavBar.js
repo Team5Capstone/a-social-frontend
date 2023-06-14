@@ -33,7 +33,7 @@ function NavBar() {
           <button className="logout-link" onClick={handleLogout}>
             Logout
           </button>
-          <Link to="/faq" className="faq-link">
+          <Link to="/tos" className="faq-link">
             TOS
           </Link>
         </div>
@@ -58,18 +58,6 @@ function NavBar() {
               <div className="dropdown-content">
                 <Link to="/forums">Everything</Link>
                 <Link to="/myPosts">My Posts</Link>
-              </div>
-            )}
-          </div>
-          <div
-            className="dropdown"
-            onMouseEnter={() => setShowMessages(true)}
-            onMouseLeave={() => setShowMessages(false)}
-          >
-            <button className="dropbtn">Messages</button>
-            {showMessages && (
-              <div className="dropdown-content">
-                <Link to="/messages">Inbox</Link>
               </div>
             )}
           </div>
