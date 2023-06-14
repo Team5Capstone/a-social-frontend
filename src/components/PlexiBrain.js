@@ -76,7 +76,6 @@ function PlexiBrain() {
 
   return (
     <div className="chatbot-container">
-        <h1 className="chatbot-heading">PLEXI</h1>
       <aside>
         <img src={babybot} className="chat-image" alt="Chatbot" />
       </aside>
