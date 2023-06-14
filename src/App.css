@@ -13,6 +13,7 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, table, tr,
     font-family: Montserrat, sans-serif;
     font-size: 12px;
     background-color: white;
+    cursor: url('./assets/PLEXI.png'), auto;
   }
   
   .container {
@@ -42,3 +43,11 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, table, tr,
     font-family: 'Aristotelica Pro', sans-serif;
     color: black;
   } 
+
+  .custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 100px; /* Adjust size as needed */
+    height: auto; /* Adjust size as needed */
+  }
