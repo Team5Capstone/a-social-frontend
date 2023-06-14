@@ -122,13 +122,54 @@
   margin-bottom: 1rem; /* Adjust the margin-bottom value as per your preference */
 }
 
-.tos-modal-content {
+.modal-content {
   height: 400px; /* Adjust the height as per your preference */
+  width: 300px;
   overflow-y: auto;
+  background-color: #fff;
 }
 
 .modal-content h2 {
   text-align: center;
   font-weight: bold;
   margin-bottom: 1rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.modal button {
+  margin: 0 10px;
+  background-color: #3F00FF;;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  
 }
