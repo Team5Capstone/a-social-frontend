@@ -140,7 +140,7 @@ const SignUp = () => {
           <button onClick={handleLogInRedirect}>Log In</button>
         </div>
       </div>
-
+      {/* Modal starts here */}
       {showTOSModal && (
         <div className="modal">
           <div className="modal-content">

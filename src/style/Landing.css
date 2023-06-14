@@ -124,7 +124,7 @@
 
 .modal-content {
   height: 400px; /* Adjust the height as per your preference */
-  width: 300px;
+  width: 400px;
   overflow-y: auto;
   background-color: #fff;
 }

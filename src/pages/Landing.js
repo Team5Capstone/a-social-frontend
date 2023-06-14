@@ -8,6 +8,7 @@ function Landing() {
         <div className='box-container'>
            <div className="logo">
                 <img src={logo} alt="Background Logo" />
+                {/* Logo marked */}
             </div>
             <Login />
         </div>

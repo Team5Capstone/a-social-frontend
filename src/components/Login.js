@@ -38,7 +38,7 @@ function Login() {
       console.error('Error:', error);
     }
   };
-
+  
   const handleSignupRedirect = () => {
     navigate('/signup');
   };

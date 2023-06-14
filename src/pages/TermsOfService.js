@@ -3,8 +3,6 @@ import '../style/TermsOfService.css';
 
 function TermsOfService() {
 
-
-
   return (
     <div className="container">
       <h2>Terms of Service</h2>
