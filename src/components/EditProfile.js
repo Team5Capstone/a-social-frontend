@@ -6,7 +6,8 @@ const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
   let navigate = useNavigate();
-  const userId = window.localStorage.getItem('a-social');
+  const userId = Number(localStorage.getItem('a-social'));
+
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
     last_name: "",
@@ -21,7 +22,6 @@ function EditProfile() {
       .then((response) => {
         const userData = response.data;
         setUpdateUser(userData);
-        console.log(updateUser)
       })
       .catch((error) => console.error(error));
   }, [userId]);
@@ -43,10 +43,11 @@ function EditProfile() {
     event.preventDefault();
     updateUserProfile();
   };
-
+console.log(updateUser)
   return (
     <div>
       <ProfilePicture />
+
       <form className="" onSubmit={handleSubmit}>
         <label htmlFor="first_name">First Name</label>
         <input
@@ -56,6 +57,7 @@ function EditProfile() {
           value={updateUser.first_name}
           onChange={handleTextChange}
         />
+
         <label htmlFor="last_name">Last Name</label>
         <input
           type="text"
@@ -64,6 +66,7 @@ function EditProfile() {
           value={updateUser.last_name}
           onChange={handleTextChange}
         />
+
         <label htmlFor="pronouns">Pronouns</label>
         <input
           type="text"
@@ -72,6 +75,7 @@ function EditProfile() {
           value={updateUser.pronouns}
           onChange={handleTextChange}
         />
+
         <label htmlFor="username">Username: </label>
         <input
           type="text"
@@ -80,14 +84,15 @@ function EditProfile() {
           value={updateUser.username}
           onChange={handleTextChange}
         />
+
         <label htmlFor="about_me">About Me:</label>
-        <input
-          type="text"
+        <textarea
           name="about_me"
           id="about_me"
           value={updateUser.about_me}
           onChange={handleTextChange}
-        />
+        ></textarea>
+
         <button className="submitButton">Submit</button>
       </form>
     </div>
