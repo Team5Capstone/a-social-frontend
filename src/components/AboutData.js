@@ -1,4 +1,4 @@
-export const aboutData = [
+const aboutData = [
     {
      label: "Triane Peart",
       alt: "image1",
@@ -28,5 +28,13 @@ export const aboutData = [
         Through my web page, I hope to share my journey, insights, and projects with you. I aim to inspire fellow learners, especially those who face challenges like dyslexia, to pursue their dreams in the world of technology. Together, we can break barriers, overcome obstacles, and create a vibrant community of passionate developers.
         
         Thank you for taking the time to get to know me. I look forward to connecting with you and exploring the endless possibilities that technology has to offer.`
+    },
+    {
+      label: "Jamal Partridge",
+      alt: "image12",
+      url: "https://avatars.githubusercontent.com/u/105737721?v=4",
+      quote: `Hello everyone! Jamal here! I'm a fullstack developer that is currently working on becoming a better coder. My Hobbies includes Computer building, Skateboarding, Basketball, Bowling, Gaming, and Streaming. My plan is to be somewhere in tech that I never tought I can reach, while becoming a better version of myself by overcoming each obsticle within my path.`
     }
   ];
+
+  export default aboutData;
