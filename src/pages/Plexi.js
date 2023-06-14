@@ -4,7 +4,11 @@ import '../style/Plexi.scss'
 
 function Plexi() {
   return(
-<div className='plexi'>
+    <div className='plexi'>
+    <div className="target top left"></div>
+    <div className="target top right"></div>
+    <div className="target bottom left"></div>
+    <div className="target bottom right"></div>
 <div class="hud">
   <div class="blue">
     <div class="notches">
@@ -63,6 +67,7 @@ function Plexi() {
     </div>
   </div>
   <div class="pink">
+      <PlexiBrain/>
     <div class="circle inner1"></div>
     <div class="notches">
       <div class="notch notch1"></div>
@@ -78,8 +83,16 @@ function Plexi() {
       <div class="notch notch11"></div>
       <div class="notch notch12"></div>
     </div>
-    <PlexiBrain/>
+  
     <div class="circle inner2"></div>
+    <div class="callout left">
+    <div class="title">computing</div>
+    <div class="body">N606SP</div>
+  </div>
+  <div class="callout right">
+    <div class="title">&copy; A-Social</div>
+    <div class="body">design credit P Biseman</div>
+  </div>
   </div>
 
 </div>
