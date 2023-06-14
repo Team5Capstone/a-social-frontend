@@ -15,8 +15,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
   const userId = Number(localStorage.getItem('a-social'));
 
   const handleAviClick = (e) => {
-    const userId = e.target.value;
-    setOtherUserId(userId);
+    setOtherUserId(e.target.value);
     navigate('/profile');
     setTimeout(() => {
       setOtherUserId('');
@@ -35,7 +34,6 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
     const fetchUsers = async () => {
         try {
           const usersResponse = await axios.get(`${API}/users`);
-        //   const usernames = usersResponse.data.map(user => user.username);
           setUsers(usersResponse.data);
         } catch (error) {
           console.log(error);
@@ -93,7 +91,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
 console.log(users)
   return (
     <div>
-      <button onClick={() => handleAviClick(forum.user_id)}>
+      <button value={forum.user_id} onClick={handleAviClick}>
         {users.map((user) => {
             if (user.id === forum.user_id) {
             return <img src={user.avatar} alt="avatar" />;
