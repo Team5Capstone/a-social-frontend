@@ -14,15 +14,13 @@ import './App.css';
 import NewForum from './pages/NewForum';
 import AboutUs from './pages/AboutUs';
 import EditProfilePage from './pages/EditProfilePage';
-import PostDetails from './components/PostDetails';
 import Plexi from './pages/Plexi';
 import cruiserImage from './assets/PLEXI.png'; 
 
 function App() {
   const [signedIn, setSignedIn] = useState(false);
   const [otherUserId, setOtherUserId] = useState(false);
-  //On load test get rid of when finished 
-  const [isLoading, setIsLoading] = useState(true);
+
 
   useEffect(() => {
     const cursor = document.createElement('img');
@@ -43,16 +41,6 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    // Simulating a loading delay
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
-
-  if (isLoading) {
-    // return <LoadingPage />;
-  }
   
   return (
     <div className="App">

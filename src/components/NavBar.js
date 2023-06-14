@@ -4,7 +4,6 @@ import '../style/NavBar.css';
 
 function NavBar() {
   const [showForum, setShowForum] = useState(false);
-  const [showMessages, setShowMessages] = useState(false);
   const [showExtras, setShowExtras] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const navigate = useNavigate();
