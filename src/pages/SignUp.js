@@ -77,6 +77,7 @@ const SignUp = () => {
             placeholder="First Name"
             value={user.first_name}
             onChange={handleTextChange}
+            required
           />
           <label htmlFor="last_name">Last Name:</label>
           <input
@@ -85,6 +86,7 @@ const SignUp = () => {
             placeholder="Last Name"
             value={user.last_name}
             onChange={handleTextChange}
+            required
           />
           <label htmlFor="username">Username:</label>
           <input
@@ -93,6 +95,7 @@ const SignUp = () => {
             placeholder="Username"
             value={user.username}
             onChange={handleTextChange}
+            required
           />
           <label htmlFor="email">Email:</label>
           <input
@@ -101,6 +104,7 @@ const SignUp = () => {
             placeholder="Please enter Email"
             value={user.email}
             onChange={handleTextChange}
+            required
           />
           <label htmlFor="password">Password:</label>
           <div className="password-input">
@@ -110,6 +114,7 @@ const SignUp = () => {
               placeholder="Password"
               value={user.password}
               onChange={handleTextChange}
+              required
             />
             <button
               type="button"
@@ -126,6 +131,7 @@ const SignUp = () => {
             placeholder="Date of Birth"
             value={user.dob}
             onChange={handleTextChange}
+            required
           />
           <button type="submit">Sign Up</button>
         </form>
@@ -137,7 +143,7 @@ const SignUp = () => {
 
       {showTOSModal && (
         <div className="modal">
-          <div className="tos-modal-content">
+          <div className="modal-content">
             <h2>Terms of Service</h2>
             <p className="tos-paragraph">
             By using this ridiculously awesome forum, you agree to the following terms and conditions. We promise it won't be as painful as stepping on a LEGO brick but if you fail to read the small print in we can not promise that we did not add in a clause similar to season 15 episode 1 of South Park. Triane wrote this. They are not to be trusted. -signed Triane. 
