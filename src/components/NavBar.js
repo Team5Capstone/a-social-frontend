@@ -20,8 +20,29 @@ function NavBar() {
 
   const signedIn = !!window.localStorage.getItem('a-social');
 
+  let sidebar = null;
+  if (signedIn && showSettings) {
+    sidebar = (
+      <div className="settings-sidebar">
+        <div className="sidebar-header">
+          <button className="close-btn" onClick={handleSettingsClick}>
+             ☞
+          </button>
+        </div>
+        <div className="sidebar-content">
+          <button className="logout-link" onClick={handleLogout}>
+            Logout
+          </button>
+          <Link to="/faq" className="faq-link">
+            TOS
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <>
+    <React.Fragment>
       {signedIn && (
         <nav className="navbar">
           <Link to="/profile">
@@ -60,7 +81,7 @@ function NavBar() {
             <button className="dropbtn">Extras</button>
             {showExtras && (
               <div className="dropdown-content">
-                <Link to="/maps">Sensory Map</Link>
+                <Link to="/plexi">Wellness Companion</Link>
                 <Link to="/journal">My Journal</Link>
               </div>
             )}
@@ -71,25 +92,15 @@ function NavBar() {
           </Link>
         </nav>
       )}
-      {showSettings && (
-        <div className="settings-sidebar">
-          <div className="sidebar-header">
-            <button className="close-btn" onClick={handleSettingsClick}>
-              X
-            </button>
-          </div>
-          <div className="sidebar-content">
-            <button className="logout-link" onClick={handleLogout}>
-              Logout
-            </button>
-            <Link to='/about'>Who We Are (A-Social) </Link>
-            <Link to="/faq" className="faq-link">
-              FAQ
-            </Link>
-          </div>
-        </div>
-      )}
-    </>
+
+      <div className="content" />
+
+      {sidebar}
+
+      <footer className="footer">
+        <p>&copy; A-SOCIAL All rights reserved.</p>
+      </footer>
+    </React.Fragment>
   );
 }
 

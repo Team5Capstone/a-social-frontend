@@ -1,19 +1,9 @@
 import React, { useState }from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel"; 
-// import { renderSlides } from './CarouselUtils';
+// import { Carousel } from "react-responsive-carousel"; 
 import { aboutData } from '../components/AboutData';
 import '../style/About.css';
-// import '../
-import Footer from '../components/Footer';
-// const renderSlides = aboutData.map((image) => (
-//     <div key={image.alt}>
-//       <p>{image.quote}</p>
-//       <img src={image.url} alt={image.alt} />
-//       <p className="legend">{image.label}</p>
-     
-//     </div>
-//   ));
+
+
  function About() {
     const [currentIndex, setCurrentIndex] = useState();
     function handleChange(index) {
@@ -29,7 +19,7 @@ import Footer from '../components/Footer';
             <h1>About Developers </h1>
             <div className="About">
             
-            <Carousel
+            {/* <Carousel
              showArrows={true}
              autoPlay={true}
              infiniteLoop={true}
@@ -37,8 +27,8 @@ import Footer from '../components/Footer';
              onChange={handleChange}
              className="carousel-container"
              >
-            {/* {renderSlides} */}
-            </Carousel>
+           
+            </Carousel> */}
             </div>
             </div>
         </div>
