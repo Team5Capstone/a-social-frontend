@@ -1,17 +1,33 @@
+/* Landing.css */
+
 .landing-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-}
-
-.logo {
   margin-bottom: 2rem;
 }
 
+.box-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  margin-right: 2rem; /* Adjust the margin-right value as per your preference */
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
 .login-box {
-  padding: 2rem;
+  padding: 3rem;
   background-color: #fff;
   border: 2px solid #d0c3ff;
   border-radius: 10px;
@@ -71,6 +87,14 @@
   align-items: center;
 }
 
+.toggle-password-btn{
+  position: absolute;
+  padding: 0.7rem;
+  background-color: transparent;
+  color: #777;
+  border: none;
+}
+
 .signup-link {
   display: flex;
   justify-content: center;
@@ -92,4 +116,59 @@
 
 .signup-link p {
   margin-right: 0.5rem;
+}
+
+.tos-paragraph {
+  margin-bottom: 1rem; /* Adjust the margin-bottom value as per your preference */
+}
+
+.modal-content {
+  height: 400px; /* Adjust the height as per your preference */
+  width: 400px;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.modal-content h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.modal button {
+  margin: 0 10px;
+  background-color: #3F00FF;;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
 }
