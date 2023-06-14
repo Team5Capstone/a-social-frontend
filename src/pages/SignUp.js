@@ -36,8 +36,7 @@ const SignUp = () => {
     axios
       .post(`${API}/users`, user)
       .then((response) => {
-        window.localStorage.setItem('a-social', JSON.stringify(response.data));
-        navigate('/profile');
+        window.localStorage.setItem('a-social', JSON.stringify(response.data.id));
       })
       .catch((error) => console.warn('catch error:', error));
   }
