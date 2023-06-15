@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../style/ChatbotModal.css';
+import '../style/PlexiBrain.css';
 import babybot from '../assets/PLEXI.png';
 
 function PlexiBrain() {
