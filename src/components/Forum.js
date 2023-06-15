@@ -80,6 +80,12 @@ function Forum({ setOtherUserId }) {
     filteredForums = filteredForums.filter((forum) => forum.category_name === selectedCategory);
   }
 
+  if (search.trim() !== '') {
+    filteredForums = filteredForums.filter((forum) =>
+    forum.forum_description.toLowerCase().includes(search.toLowerCase())
+  );
+}
+
   if (sortBy === 'Oldest') {
     filteredForums.sort(compareByReverseDate);
   } else {
@@ -93,6 +99,10 @@ function Forum({ setOtherUserId }) {
   const changeSortBy = (e) => {
     setSortBy(e.target.value);
   };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
 
   const formatDate = (date) => {
     const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
@@ -121,6 +131,12 @@ function Forum({ setOtherUserId }) {
     <div className="forum-container">
       <h1 className="forum-title">Forum</h1>
       <div className="searchbar">
+        <input 
+          type='text'
+          placeholder='Search'
+          value={search}
+          onChange={handleSearch}
+        />
         <a href="/forums/new" className="button">Create New Forum</a>
       </div>
       <ul className="post-list">
