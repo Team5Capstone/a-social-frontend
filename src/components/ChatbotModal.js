@@ -106,6 +106,7 @@ const ChatbotModal = () => {
         className="mood-button"
         onClick={handleButtonClick}
         onMouseEnter={handleButtonHover}
+        placeholder='How are You Feeling'
       >
         {selectedMood}
       </button>
