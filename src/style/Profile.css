@@ -1,13 +1,12 @@
 .profile-container {
   margin-top: 5%;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-
 .profile-info {
-  margin-left: 20px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -25,25 +24,17 @@
   margin-bottom: 8px;
 }
 
-.edit-profile-button,
-.message-button {
-  background-color: #3f00ff;
-  color: white;
+.editP {
+  background-color: #6200ee; /* Purple button color */
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 5px;
+  font-size: medium;
+  color: #fff;
 }
 
-.edit-profile-button:hover,
-.message-button:hover {
-  background-color: #2200aa;
+.avatarModal{
+  
 }
-
-
-
-
 
 
 

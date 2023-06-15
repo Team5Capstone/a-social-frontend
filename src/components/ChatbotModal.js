@@ -22,6 +22,11 @@ const ChatbotModal = () => {
     }
   };
 
+  const handleButtonLeave = () => {
+    setSelectedMood('How are you feeling?');
+    //This should be default. Fix Later
+  };
+
   const handleButtonHover = () => {
     let index = moodIndex + 1;
     if (index >= moods.length) {
@@ -106,7 +111,7 @@ const ChatbotModal = () => {
         className="mood-button"
         onClick={handleButtonClick}
         onMouseEnter={handleButtonHover}
-        placeholder='How are You Feeling'
+        onMouseLeave={handleButtonLeave}
       >
         {selectedMood}
       </button>
