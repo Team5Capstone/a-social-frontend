@@ -8,7 +8,8 @@ const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
   let navigate = useNavigate();
-  const userId = window.localStorage.getItem('a-social');
+  const userId = Number(localStorage.getItem('a-social'));
+
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
     last_name: "",
@@ -23,7 +24,6 @@ function EditProfile() {
       .then((response) => {
         const userData = response.data;
         setUpdateUser(userData);
-        console.log(updateUser)
       })
       .catch((error) => console.error(error));
   }, [userId]);
@@ -45,7 +45,7 @@ function EditProfile() {
     event.preventDefault();
     updateUserProfile();
   };
-
+console.log(updateUser)
   return (
     <div className="container">
       <ProfilePicture />
