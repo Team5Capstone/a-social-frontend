@@ -1,0 +1,50 @@
+.start-button{
+    background-color: #3f00ff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px; /* Added margin for spacing between buttons */
+}
+.stop-button {
+    background-color: #a81212;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px; /* Added margin for spacing between buttons */
+}
+
+aside {
+    width: 100%;
+    max-width: 400px; 
+}
+
+.chat-image {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px;
+    object-fit: cover; /* Added to prevent image stretching */
+}
+
+.chatbot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    padding-bottom: 40px; /* Added padding at the bottom to create space for buttons */
+    box-sizing: border-box; /* Include padding in the height calculation */
+    position: fixed;
+    z-index: 10;
+}
+
+main {
+    width: 70%;
+    text-align: center;
+    margin-bottom: 50px; /* Added margin at the bottom to create space for buttons */
+}
