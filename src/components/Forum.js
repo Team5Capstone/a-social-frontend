@@ -70,6 +70,23 @@ function Forum({ setOtherUserId }) {
     };
   }, []);
 
+  let filteredForums = [...forums];
+
+  if (selectedCategory !== 'All') {
+    filteredForums = filteredForums.filter((forum) => forum.category_name === selectedCategory);
+  }
+
+  if (search.trim() !== '') {
+    filteredForums = filteredForums.filter((forum) =>
+    forum.forum_description.toLowerCase().includes(search.toLowerCase())
+  );
+}
+
+  if (sortBy === 'Oldest') {
+    filteredForums.sort(compareByReverseDate);
+  } else {
+    filteredForums.sort(compareByDate);
+  }
   const categories = [
     'Venting and Support',
     'Accessibility',
@@ -79,6 +96,7 @@ function Forum({ setOtherUserId }) {
     'General Chat',
   ];
 
+
   const changeCategory = (e) => {
     const selectedValue = e.target.value;
     setSelectedCategory(selectedValue);
@@ -87,6 +105,10 @@ function Forum({ setOtherUserId }) {
   const changeSortBy = (e) => {
     setSortBy(e.target.value);
   };
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  }
 
   const formatDate = (date) => {
     const options = { month: 'numeric', day: 'numeric', year: 'numeric' };
@@ -113,7 +135,15 @@ function Forum({ setOtherUserId }) {
   return (
     <div className="forum-container">
       <h1 className="forum-title">Forum</h1>
+      <div className="searchbar">
+        <input 
+          type='text'
+          placeholder='Search'
+          value={search}
+          onChange={handleSearch}
+        />
       <div className="create">
+
         <a href="/forums/new" className="button">Create New Forum</a>
       </div>
       <div className="filter-options">
