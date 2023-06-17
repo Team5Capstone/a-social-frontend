@@ -17,6 +17,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+   
   }
   
   .avatarModal h2 {
@@ -28,5 +29,4 @@
     height: 100px;
   }
   
-  /* Add other CSS styles as needed */
   

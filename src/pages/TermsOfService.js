@@ -4,7 +4,7 @@ import '../style/TermsOfService.css';
 function TermsOfService() {
 
   return (
-    <div className="container">
+    <div className="tos-container">
       <h2>Terms of Service</h2>
       {/* <img src={cruiserImage} className="floating-image cruiser-image" alt='' /> */}
       <p className="tos-paragraph">

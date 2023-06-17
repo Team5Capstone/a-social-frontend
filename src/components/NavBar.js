@@ -45,7 +45,9 @@ function NavBar() {
       {signedIn && (
         <nav className="navbar">
           <Link to="/profile">
-            <button className="profile-pic">Profile Picture</button>
+            <div>
+            <button className="dropbtn">Profile</button>
+            </div>
           </Link>
           <div
             className="dropdown"

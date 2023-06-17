@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../style/ChatbotModal.css';
+import '../style/PlexiBrain.css';
 import babybot from '../assets/PLEXI.png';
 
 function PlexiBrain() {
@@ -76,7 +76,6 @@ function PlexiBrain() {
 
   return (
     <div className="chatbot-container">
-        <h1 className="chatbot-heading">PLEXI</h1>
       <aside>
         <img src={babybot} className="chat-image" alt="Chatbot" />
       </aside>
