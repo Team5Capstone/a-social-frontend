@@ -53,8 +53,8 @@ const AvatarSelector = () => {
 
   return (
     <div>
-      <button className='' onClick={handleProfilePictureClick}>
-        <img src={selectedAvatar} alt='Profile' />
+      <button className="imgs" onClick={handleProfilePictureClick}>
+        <img src={selectedAvatar} alt='Profile' /> 
       </button>
       {showModal && (
         <div className='avatarModal'>
