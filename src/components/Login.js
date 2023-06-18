@@ -8,6 +8,7 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false); // New state for password visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,16 +20,16 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await axios.post(`${API}/users/login`, {
         email,
         password,
       });
       const data = response.data;
-  
-      if (response.status === 201) { // Change the status check to 201
-        localStorage.setItem('a-social', JSON.stringify(data.id)); // Store the entire data object
+
+      if (response.status === 201) {
+        localStorage.setItem('a-social', JSON.stringify(data.id));
         navigate('/profile');
       } else {
         setErrorMessage(data.message);
@@ -36,10 +37,14 @@ function Login() {
     } catch (error) {
       console.error('Error:', error);
     }
-  };  
-
+  };
+  
   const handleSignupRedirect = () => {
     navigate('/signup');
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -55,14 +60,23 @@ function Login() {
             className="login-input"
             required
           />
-          <input
-            type="password"
-            placeholder="Please Enter Your Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="login-input"
-            required
-          />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Please Enter Your Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="login-input"
+              required
+            />
+            <button
+              type="button"
+              className="password-visibility-button"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? 'Hide' : 'Show'}
+            </button>
+          </div>
           <button type="submit" className="login-button">
             Login
           </button>

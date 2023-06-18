@@ -4,7 +4,7 @@ import ProfilePicture from './ProfilePicture'
 import ChatBotModal from './ChatbotModal'
 import '../style/Profile.css'
 import axios from 'axios';
-import '../style/Profile.css';
+
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -56,7 +56,7 @@ function Profile({ otherUserId }) {
             <strong>About Me:</strong> {user.about_me}
           </p>
           <Link to="/editProfile">
-            <button>Edit Profile</button>
+            <button className='editP'>Edit Profile</button>
           </Link>
           <ChatBotModal className="chatbot-container"/>
         </div>

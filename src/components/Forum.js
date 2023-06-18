@@ -7,21 +7,12 @@ const API = process.env.REACT_APP_API_URL;
 
 function Forum({ setOtherUserId }) {
   const [forums, setForums] = useState([]);
-  const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Latest');
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [selectedForumId, setSelectedForumId] = useState(null);
-
-  const handleAviClick = (e) => {
-    setOtherUserId(e.target.value);
-    navigate('/profile');
-    setTimeout(() => {
-      setOtherUserId('');
-    }, 30000);
-  }
+  const [userId, setUserId] = useState('');
 
   const findUserById = (userId) => {
     return users.find((user) => user.id === userId);
@@ -67,6 +58,11 @@ function Forum({ setOtherUserId }) {
       })
       .catch((err) => console.log(err));
 
+    const storedUserId = localStorage.getItem('user_id');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
@@ -91,9 +87,19 @@ function Forum({ setOtherUserId }) {
   } else {
     filteredForums.sort(compareByDate);
   }
+  const categories = [
+    'Venting and Support',
+    'Accessibility',
+    'Vibe Check',
+    'Family',
+    'Hobbies',
+    'General Chat',
+  ];
+
 
   const changeCategory = (e) => {
-    setSelectedCategory(e.target.value);
+    const selectedValue = e.target.value;
+    setSelectedCategory(selectedValue);
   };
 
   const changeSortBy = (e) => {
@@ -114,18 +120,17 @@ function Forum({ setOtherUserId }) {
     return new Date(date).toLocaleTimeString(undefined, options);
   };
 
-  const handleDeleteForum = (forumId) => {
-    setSelectedForumId(forumId);
-    axios
-      .delete(`${API}/forums/${forumId}`)
-      .then((res) => {
-        setForums(forums.filter((forum) => forum.id !== forumId));
-      })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setSelectedForumId(null);
-      });
-  };
+  let filteredForums = [...forums];
+
+  if (selectedCategory !== 'All') {
+    filteredForums = forums.filter((forum) => forum.category === selectedCategory);
+  }
+
+  if (sortBy === 'Oldest') {
+    filteredForums.sort(compareByReverseDate);
+  } else {
+    filteredForums.sort(compareByDate);
+  }
 
   return (
     <div className="forum-container">
@@ -137,28 +142,44 @@ function Forum({ setOtherUserId }) {
           value={search}
           onChange={handleSearch}
         />
+      <div className="create">
+
         <a href="/forums/new" className="button">Create New Forum</a>
+      </div>
+      <div className="filter-options">
+        <label htmlFor="category">Category:</label>
+        <select name="category" id="category" value={selectedCategory} onChange={changeCategory}>
+          <option value="All">All</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>{category}</option>
+          ))}
+        </select>
+        <label htmlFor="sort">Sort By:</label>
+        <select name="sort" id="sort" value={sortBy} onChange={changeSortBy}>
+          <option value="Latest">Latest</option>
+          <option value="Oldest">Oldest</option>
+        </select>
       </div>
       <ul className="post-list">
         {filteredForums.map((forum) => {
           const user = findUserById(forum.user_id);
+          const isCurrentUser = user && user.id === userId;
+
+          const tags = forum.forum_tags || [];
+
           return (
             <li className="post" key={forum.id}>
               <div className="post-details">
-                <h1>{forum.forum_description}</h1>
+              <Link to={`/forums/${forum.id}`}><h1>{forum.forum_description}</h1></Link>
                 <p>Category: {forum.category}</p>
                 <p>Topics: {forum.forum_topics}</p>
                 <p>Created At: {formatDate(forum.forum_created_at)} {formatTime(forum.forum_created_at)}</p>
+                {tags.length > 0 && (
+                  <p>Tags: {tags.join(', ')}</p>
+                )}
               </div>
               <div className="post-creator">
                 <h2>Created by: {user ? user.username : ''}</h2>
-                <Link to={`/forums/${forum.id}`}>View Post</Link>
-                <button
-                  onClick={() => handleDeleteForum(forum.id)}
-                  disabled={selectedForumId === forum.id}
-                >
-                  Delete
-                </button>
               </div>
             </li>
           );
@@ -175,11 +196,3 @@ function Forum({ setOtherUserId }) {
 }
 
 export default Forum;
-
-
-// Add a reply button in each forum 
-// should me Create new forum a button
-// Change category names in dropdown
-// add boarder around each form 
-// make header and footer
-

@@ -35,6 +35,7 @@ import '../style/About.css';
                 </div>
                 ))}
             </Carousel>
+
             </div>
             </div>
         </div>
