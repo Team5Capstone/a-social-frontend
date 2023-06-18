@@ -41,7 +41,7 @@ function PostDetails() {
     <div>
       <h2>{post.forum_title}</h2>
       <p>{post.forum_description}</p>
-      <p>Category: {post.forum_category}</p>
+      <p>Category:{post.forum_category}</p>
       <div>
         <label>
           <input

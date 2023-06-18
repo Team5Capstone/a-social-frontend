@@ -5,9 +5,9 @@ import "../style/Forum.css";
 
 const API = process.env.REACT_APP_API_URL;
 
-function Forum({ setOtherUserId }) {
+function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
   const [forums, setForums] = useState([]);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //this isn't being used 
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [sortBy, setSortBy] = useState('Latest');
@@ -133,15 +133,15 @@ function Forum({ setOtherUserId }) {
       <ul className="post-list">
         {filteredForums.map((forum) => {
           const user = findUserById(forum.user_id);
-          const isCurrentUser = user && user.id === userId;
+          const isCurrentUser = user && user.id === userId; //This isn't being used
 
           const tags = forum.forum_tags || [];
 
           return (
             <li className="post" key={forum.id}>
               <div className="post-details">
-                <h1>{forum.forum_description}</h1>
-                <p>Category: {forum.category}</p>
+              <Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}><h1>{forum.forum_description}</h1></Link>
+                <p>Category: {forum.category}</p> 
                 <p>Topics: {forum.forum_topics}</p>
                 <p>Created At: {formatDate(forum.forum_created_at)} {formatTime(forum.forum_created_at)}</p>
                 {tags.length > 0 && (
@@ -150,7 +150,6 @@ function Forum({ setOtherUserId }) {
               </div>
               <div className="post-creator">
                 <h2>Created by: {user ? user.username : ''}</h2>
-                <button className='other-button'><Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}>View Post</Link></button>
               </div>
             </li>
           );
