@@ -68,8 +68,8 @@ function NavBar() {
             <button className="dropbtn">Extras</button>
             {showExtras && (
               <div className="dropdown-content">
-                <Link to="/plexi">Wellness Companion</Link>
                 <Link to="/journal">My Journal</Link>
+                <Link to="/plexi">Wellness Companion</Link>
               </div>
             )}
           </div>
