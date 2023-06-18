@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../style/CreateForum.css'
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -109,7 +110,7 @@ function CreateForum() {
             </div>
           ))}
         </div>
-        <button type="submit">Create Forum</button>
+        <button className='sub' type="submit">Create Forum</button>
       </form>
     </div>
   );

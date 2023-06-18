@@ -13,7 +13,6 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: none; /* Disable text box resizing */
-    font-family: Arial, sans-serif; /* Use a clear and readable font */
     font-size: 14px; /* Adjust the font size as desired */
     line-height: 2; /* Improve line height for better readability */
   }
