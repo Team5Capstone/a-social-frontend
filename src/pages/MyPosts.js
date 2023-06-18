@@ -82,7 +82,7 @@ function MyPosts() {
             return (
               <li className="post" key={forum.id}>
                 <div className='post-details'>
-                <h1>{forum.forum_description}</h1>
+                <Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}><h1>{forum.forum_description}</h1></Link>
                 <p>Category: {forum.category}</p>
                 <p>Topics: {forum.forum_topics}</p>
                 <p>
@@ -92,7 +92,6 @@ function MyPosts() {
                 </div>
                 <div className="post-creator">
                   <h2>Created by: {user ? user.username : ''}</h2>
-                  <button className='other-button'><Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}>View Post</Link></button>
                   <button className='other-button' onClick={() => handleDeletePost(forum.id)} style={{ marginLeft: '4px' }}>Delete</button>
                 </div>
               </li>
