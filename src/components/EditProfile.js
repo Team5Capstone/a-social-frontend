@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ProfilePicture from "./ProfilePicture";
+import "../style/EditProfile.css";
+
 const API = process.env.REACT_APP_API_URL;
 
 function EditProfile() {
-  let navigate = useNavigate();
-  const userId = Number(localStorage.getItem('a-social'));
+  const navigate = useNavigate();
+  const userId = Number(localStorage.getItem("a-social"));
 
   const [updateUser, setUpdateUser] = useState({
     first_name: "",
@@ -26,9 +28,9 @@ function EditProfile() {
       .catch((error) => console.error(error));
   }, [userId]);
 
-  const updateUserProfile = () => {
+  const updateUserProfile = (updatedUser) => {
     axios
-      .put(`${API}/users/${userId}`, updateUser)
+      .put(`${API}/users/${userId}`, updatedUser)
       .then(() => {
         navigate(`/profile`);
       })
@@ -41,11 +43,13 @@ function EditProfile() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    updateUserProfile();
+
+    // Update the user profile
+    updateUserProfile(updateUser);
   };
-console.log(updateUser)
+
   return (
-    <div>
+    <div className="edit-profile-container">
       <ProfilePicture />
 
       <form className="" onSubmit={handleSubmit}>
@@ -94,22 +98,9 @@ console.log(updateUser)
         ></textarea>
 
         <button className="submitButton">Submit</button>
-      </form> 
+      </form>
     </div>
   );
 }
 
 export default EditProfile;
-
-//add something to fill space
-//fix profile where avatar is user.id avatar
-//fix create new forum button
-//fix category
-//fix topics
-//delete should only show if you are looking at your post
-//remove messages
-//welness canpansion
-//journal edit css
-//create TOS
-//fix/add about me
-
