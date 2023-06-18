@@ -119,7 +119,9 @@ console.log(users)
             <p>{reply.reply_content}</p>
             <p>Created At: {formatDate(reply.reply_created_at)}</p>
             <h1>{users.includes(reply.user) ? users[0].username : ''}</h1>
+            {loggedInUserId === reply.user_id &&(
             <button onClick={() => handleDeleteReply(reply.id)}>Delete</button>
+            )}
           </div>
         ))}
       </div>
