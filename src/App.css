@@ -57,3 +57,22 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ol, ul, li, table, tr,
     width: 100px; /* Adjust size as needed */
     height: auto; /* Adjust size as needed */
   }
+
+  /* Styles for the scrollbar track */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Set the background color of the track */
+}
+
+/* Styles for the scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #2200aa; /* Set the color of the thumb */
+  border-radius: 4px; /* Add rounded corners to the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4025a955; /* Change the color on hover */
+}

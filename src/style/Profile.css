@@ -1,49 +1,68 @@
 .profile-container {
-  margin-top: 5%;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  height: 750px;
+  overflow:auto;
 }
 
+.profile-content {
+  width: 100%; /* Ensure the content takes up the full width */
+}
 
 .profile-info {
   margin-left: 20px;
-  text-align: center;
 }
 
 .profile-info h1 {
   font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.profile-info h3 {
-  font-size: 16px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .profile-info p {
-  margin-bottom: 8px;
+  margin-bottom: 5px;
+  line-height: 1.5;
+  font-size: small;
 }
 
-.edit-profile-button,
-.message-button {
-  background-color: #3f00ff;
-  color: white;
+.profile-info strong {
+  font-weight: bold;
+}
+
+.profile-info .name {
+  margin-top: 20px;
+}
+
+.profile-info .pronouns {
+  margin-top: 10px;
+}
+
+.profile-info .aboutSection {
+  margin-top: 10px;
+  white-space: pre-line;
+}
+
+.aboutSection{
+  margin-bottom: 10px; /* Add spacing between paragraphs */
+  
+}
+
+.profile-info button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2200aa;
+  color: #fff;
   border: none;
-  padding: 8px 16px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
-.edit-profile-button:hover,
-.message-button:hover {
-  background-color: #2200aa;
+.profile-info button:hover {
+  background-color: #4025a9;
 }
 
-
-
-
-
-
-
+.profile-info img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}

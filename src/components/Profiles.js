@@ -13,7 +13,7 @@ function Profile({ otherUserId }) {
   const [selectedAvatar, setSelectedAvatar] = useState(null); // Add selectedAvatar state
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const avatar = searchParams.get('avatar');
+  const avatar = searchParams.get('avatar'); //THIS IS NEVER BEING CALLED 
 
   useEffect(() => {
     const userId = window.localStorage.getItem('a-social');
@@ -40,25 +40,25 @@ function Profile({ otherUserId }) {
 
   return (
     <div className="profile-container">
+      <div className='profile-content'>
       {!otherUserId ? (
         <>
         <ProfilePicture />
         <div className="profile-info">
+          <ChatBotModal className="chatbot-container"/>
           <h1>{user.username}</h1>
-          <h3>{user.title}</h3>
-          <p>
+          <p className='name'>
             <strong>My Name Is:</strong> {user.first_name} {user.last_name}
           </p>
-          <p>
+          <p className='pronouns'>
             <strong>My Pronouns Are:</strong> {user.pronouns}
           </p>
-          <p>
+          <p className='aboutSection'>
             <strong>About Me:</strong> {user.about_me}
           </p>
           <Link to="/editProfile">
             <button>Edit Profile</button>
           </Link>
-          <ChatBotModal className="chatbot-container"/>
         </div>
         </>
       ) : (
@@ -66,22 +66,19 @@ function Profile({ otherUserId }) {
           <img src={user.avatar} alt="avatar" />
           <div className="profile-info">
             <h1>{user.username}</h1>
-            <h3>{user.title}</h3>
-            <p>
+            <p className='name'>
               <strong>My Name Is:</strong> {user.first_name} {user.last_name}
             </p>
-            <p>
+            <p className='pronouns'>
               <strong>My Pronouns Are:</strong> {user.pronouns}
             </p>
-            <p>
+            <p className='aboutSection'>
               <strong>About Me:</strong> {user.about_me}
             </p>
-            <Link to="/inbox">
-              <button>Message</button>
-            </Link>
           </div>
         </>
       )}
+      </div>
     </div>
   );
 }
