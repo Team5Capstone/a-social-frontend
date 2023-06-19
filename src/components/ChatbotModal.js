@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../style/ChatbotModal.css';
+import '../style/Confetti.scss'
 
 const ChatbotModal = () => {
   const [showModal, setShowModal] = useState(false);
@@ -97,7 +98,13 @@ const ChatbotModal = () => {
     }
   };  
   
-  
+  const renderConfetti = () => {
+    const confetti = [];
+    for (let i = 0; i < 150; i++) {
+      confetti.push(<div key={i} className={`confetti confetti${i}`}></div>);
+    }
+    return confetti;
+  };
   
 
   return (
@@ -122,7 +129,12 @@ const ChatbotModal = () => {
                 alt="Chatbot"
               />
               {selectedMood === moods[0] && (
-                <div className="confetti">So glad to hear that! (Confetti animation goes here)</div>
+                <div className='feelingGood'>
+                <div className='confetti-container'>
+                  {renderConfetti()}
+                </div>
+                <p>Yay! So glad to hear that!</p>
+                </div>
               )}
               {selectedMood !== moods[0] && chatMessages.length > 0 && (
                 <div className="chat-messages">

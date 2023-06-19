@@ -1,7 +1,7 @@
 $blueColor: #57b3c0;
 $pinkColor: #ff69b4;
 
-.container {
+.plexi-container {
   position: relative;
   height: 100vh; /* Adjust the height as needed */
 }
@@ -25,14 +25,13 @@ $pinkColor: #ff69b4;
 
 .plexi {
   position: absolute;
-  top: 60%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
   height: 150vh;
   margin: 0;
   padding: 0;
-  perspective: -500px;
 
   & .hud {
     left: 25vw;
@@ -199,15 +198,6 @@ $pinkColor: #ff69b4;
         }
         
       }
-      
-      & .center{
-        top: 46%;
-        left: 43%;
-        width: 14%;
-        height: 8%;
-        transform: translate3d(0px, 0px, 0px);
-        animation: center-pulse-3d 12s 4s ease-in-out alternate infinite;
-      }
     }
     
     & .pink{
@@ -265,34 +255,6 @@ $pinkColor: #ff69b4;
       }
       
     }
-    
-    & .callout{
-      opacity: 0;
-      width: 0;
-      height: 5vw;
-      border-bottom: 0.25vw solid $blueColor;
-      &.left{
-        bottom: 12.5vw;
-        left: -10vw;
-        animation: calloutleft-grow 5s 3s ease-in-out alternate infinite;
-      }
-      &.right{
-        top: 7.5vw;
-        right: -10vw;
-        text-align: right;
-        animation: calloutright-grow 5s 4s ease-in-out alternate infinite;
-      }
-      
-      & .title, & .plexi{
-        position: relative;
-        width: 100%;
-      }
-      
-      & .title {
-        font-size: 2em;
-      }
-      
-    }  
   }
   }
 
@@ -363,10 +325,4 @@ $pinkColor: #ff69b4;
     0%   {transform: perspective(500px) translate3d(0px, 0px, 0px);}
     50% {transform: perspective(500px) translate3d(0px, 0px, -50px);}
     100% {transform: perspective(500px) translate3d(0px, 0px, -200px);}
-  }
-  
-  @keyframes center-pulse-3d {
-    0%   {transform: perspective(500px) translate3d(0px, 0px, 0px);}
-    50% {transform: perspective(500px) translate3d(0px, 0px, 80px);}
-    100% {transform: perspective(500px) translate3d(0px, 0px, 40px);}
   }
