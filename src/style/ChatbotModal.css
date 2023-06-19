@@ -107,17 +107,24 @@
     margin-bottom: 50px; /* Added margin at the bottom to create space for buttons */
   }
   
-  .start-button,
-  .stop-button {
+  .start-listening-button{
     background-color: #3f00ff;
     color: white;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 5px;
-    cursor: pointer;
-    margin: 10px; /* Added margin for spacing between buttons */
   }
+
+  .stop-listening-button {
+      background-color: #ff69b4;;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+  }
+
   
   aside {
     width: 100%;

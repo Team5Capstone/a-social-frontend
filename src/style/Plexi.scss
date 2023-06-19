@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
 $blueColor: #57b3c0;
-$pinkColor: hotpink;
+$pinkColor: #ff69b4;
 
 .container {
   position: relative;
@@ -34,7 +32,6 @@ $pinkColor: hotpink;
   height: 150vh;
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans';
   perspective: -500px;
 
   & .hud {
@@ -46,7 +43,6 @@ $pinkColor: hotpink;
     transform-style: preserve-3d;
     transform: perspective(500px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
     animation: hud-3d 4s 8s ease-in-out forwards;
-    // pointer-events: none;
     transition: all 0.5s ease;
 
     & .circle{
