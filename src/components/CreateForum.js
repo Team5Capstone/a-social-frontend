@@ -1,27 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../style/CreateForum.css'
+import '../style/CreateForum.css';
 
 const API = process.env.REACT_APP_API_URL;
-
-const categories = [
-  'Venting and Support',
-  'Accessibility',
-  'Vibe Check',
-  'Family',
-  'Hobbies',
-  'General Chat',
-];
 
 function CreateForum() {
   const navigate = useNavigate();
   const [forumTitle, setForumTitle] = useState('');
+  const [categories, setCategories] = useState([]);
   const [forumDescription, setForumDescription] = useState('');
   const [forumPost, setForumPost] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const userId = Number(localStorage.getItem('a-social'));
+
+  useEffect(() => {
+    axios
+      .get(`${API}/categories`)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,13 +37,11 @@ function CreateForum() {
       forum_tags: tags.split(',').map((tag) => tag.trim()),
       user_id: userId,
     };
-    
 
     axios
       .post(`${API}/forums`, newForum)
       .then((res) => {
-        // Handle success or redirect to the created forum
-        navigate('/forums'); // Redirect to the forums page after successful forum creation
+        navigate('/forums');
       })
       .catch((err) => {
         console.log(err);
@@ -96,21 +97,24 @@ function CreateForum() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="categories">Categories:</label>
-          {categories.map((category) => (
-            <div key={category} className="category-checkbox">
-              <input
-                type="checkbox"
-                id={`category-${category}`}
-                value={category}
-                checked={selectedCategories.includes(category)}
-                onChange={() => handleCategoryToggle(category)}
-              />
-              <label htmlFor={`category-${category}`}>{category}</label>
-            </div>
-          ))}
-        </div>
-        <button className='sub' type="submit">Create Forum</button>
+  <label htmlFor="categories">Categories:</label>
+  {categories.map((category) => (
+    <div key={category.id} className="category-checkbox">
+      <input
+        type="checkbox"
+        id={`category-${category.id}`}
+        value={category.category_name}
+        checked={selectedCategories.includes(category.category_name)}
+        onChange={() => handleCategoryToggle(category.category_name)}
+      />
+      <label htmlFor={`category-${category.id}`}>{category.category_name}</label>
+    </div>
+  ))}
+</div>
+
+        <button className="sub" type="submit">
+          Create Forum
+        </button>
       </form>
     </div>
   );

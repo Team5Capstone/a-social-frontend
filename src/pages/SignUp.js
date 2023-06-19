@@ -58,6 +58,7 @@ const SignUp = () => {
     e.preventDefault()
     setShowTOSModal(false);
     handleSubmit(e);
+    navigate('/profile')
   }
 
   function togglePasswordVisibility() {

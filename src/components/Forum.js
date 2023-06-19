@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import "../style/Forum.css"; 
+import '../style/Forum.css';
 
 const API = process.env.REACT_APP_API_URL;
 
-function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
+function Forum({ setOtherUserId }) {
   const [forums, setForums] = useState([]);
-  const navigate = useNavigate(); //this isn't being used 
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [categories, setCategories] = useState([]);
   const [sortBy, setSortBy] = useState('Latest');
+  const [badges, setBadges] = useState([]);
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [userId, setUserId] = useState('');
 
@@ -42,6 +44,12 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
       setShowBackToTop(false);
     }
   };
+   
+  const createBadges = () => {
+    badges.map((badge) => {
+
+    })
+  }
 
   useEffect(() => {
     axios
@@ -58,6 +66,20 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
       })
       .catch((err) => console.log(err));
 
+    axios
+      .get(`${API}/categories`)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`${API}/badges`)
+      .then((res) => {
+        setBadges(res.data);
+      })
+      .catch((err) => console.log(err));
+
     const storedUserId = localStorage.getItem('user_id');
     if (storedUserId) {
       setUserId(storedUserId);
@@ -70,15 +92,8 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
     };
   }, []);
 
-  const categories = [
-    'Venting and Support',
-    'Accessibility',
-    'Vibe Check',
-    'Family',
-    'Hobbies',
-    'General Chat',
-  ];
-
+ consol
+  
   const changeCategory = (e) => {
     const selectedValue = e.target.value;
     setSelectedCategory(selectedValue);
@@ -101,7 +116,7 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
   let filteredForums = [...forums];
 
   if (selectedCategory !== 'All') {
-    filteredForums = forums.filter((forum) => forum.category === selectedCategory);
+    filteredForums = forums.filter((forum) => forum.category_id === parseInt(selectedCategory));
   }
 
   if (sortBy === 'Oldest') {
@@ -114,14 +129,18 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
     <div className="forum-container">
       <h1 className="forum-title">Forum</h1>
       <div className="create">
-        <a href="/forums/new" className="button">Create New Forum</a>
+        <Link to="/forums/new" className="button">
+          Create New Forum
+        </Link>
       </div>
       <div className="filter-options">
         <label htmlFor="category">Category:</label>
         <select name="category" id="category" value={selectedCategory} onChange={changeCategory}>
           <option value="All">All</option>
           {categories.map((category) => (
-            <option key={category} value={category}>{category}</option>
+            <option key={category.id} value={category.id}>
+              {category.category_name}
+            </option>
           ))}
         </select>
         <label htmlFor="sort">Sort By:</label>
@@ -133,20 +152,24 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
       <ul className="post-list">
         {filteredForums.map((forum) => {
           const user = findUserById(forum.user_id);
-          const isCurrentUser = user && user.id === userId; //This isn't being used
-
+          const isCurrentUser = user && user.id === userId;
           const tags = forum.forum_tags || [];
+
+          // Find the category object based on the category_id
+          const category = categories.find((category) => category.id === forum.category_id);
+          const categoryName = category ? category.category_name : '';
 
           return (
             <li className="post" key={forum.id}>
               <div className="post-details">
-              <Link to={`/forums/${forum.id}`} style={{ textDecoration: 'none', color: '#fff' }}><h1>{forum.forum_description}</h1></Link>
-                <p>Category: {forum.category}</p> 
+                <Link to={`/forums/${forum.id}`}>
+                  <h1>{forum.forum_description}</h1>
+                </Link>
+                <p>Category: {categoryName}</p>
                 <p>Topics: {forum.forum_topics}</p>
-                <p>Created At: {formatDate(forum.forum_created_at)} {formatTime(forum.forum_created_at)}</p>
-                {tags.length > 0 && (
-                  <p>Tags: {tags.join(', ')}</p>
-                )}
+                <p>
+                  Created At: {formatDate(forum.forum_created_at)} {formatTime(forum.forum_created_at)}
+                </p>
               </div>
               <div className="post-creator">
                 <h2>Created by: {user ? user.username : ''}</h2>
@@ -155,10 +178,7 @@ function Forum({ setOtherUserId })  {// SetOtherUserID isn't being used
           );
         })}
       </ul>
-      <button
-        className={`back-to-top ${showBackToTop ? 'show' : ''}`}
-        onClick={scrollToTop}
-      >
+      <button className={`back-to-top ${showBackToTop ? 'show' : ''}`} onClick={scrollToTop}>
         &uarr;
       </button>
     </div>
