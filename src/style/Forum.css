@@ -5,6 +5,23 @@
   background-color: #f2f2f2;
 }
 
+.reply-wrapper{
+  max-width: 800px;
+  max-height: 800px;
+  overflow-y: auto;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  /* THIS IS THE ISSUE */
+}
+
+.replies{
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
 .forum-title {
   color: #3F00FF;
   font-size: 24px;
@@ -28,7 +45,7 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-.other-button {
+.other-button, .userD {
   display: inline-block;
   padding: 4px 8px;
   background-color: #3F00FF;
@@ -60,6 +77,12 @@
 
 .post-details {
   flex: 1;
+  
+}
+
+.imgs {
+  background: none;
+  border:none
 }
 
 .post-details h1 {

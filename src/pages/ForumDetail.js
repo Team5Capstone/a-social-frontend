@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import '../style/Forum.css'
 const API = process.env.REACT_APP_API_URL;
 
 function ForumDetail({ setOtherUserId, otherUserId }) {
@@ -90,54 +90,51 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
 //   };
 console.log(users)
   return (
-    <div>
+    <div className='reply-wrapper'>
+      <div className='post-details'>
       <button value={forum.user_id} onClick={handleAviClick}>
         {users.map((user) => {
             if (user.id === forum.user_id) {
-            return <img src={user.avatar} alt="avatar" />;
+            return <img className='imgs' src={user.avatar} alt="avatar" />;
             }
             return null;
             })}
       </button>
       <h1>{users.map((user) => {
             if (user.id === forum.user_id) {
-            return <p>{user. username}</p>;
+            return <h1>{user. username}</h1>;
             }
             return null;
             })}</h1>
       <h2>{forum.forum_title}</h2>
       <p>{forum.forum_description}</p>
-      <p>Category: {forum.category}</p>
-      <p>Topics: {forum.forum_topics}</p>
+      <p>Category: {forum.category || 'N/A'}</p>
+      <p>Topics: {forum.forum_topics || 'N/A'}</p>
       <p>Created At: {formatDate(forum.forum_created_at)}</p>
       <p>{forum.forum_posts}</p>
       <div className='replies'>
         {replies.map((reply) => (
-          <div key={reply.id}>
+          <div className='replies' key={reply.id}>
             <p>{reply.reply_content}</p>
             <p>Created At: {formatDate(reply.reply_created_at)}</p>
-            <h1>{users.includes(reply.user) ? users[0].username : ''}</h1>
-            <button onClick={() => handleDeleteReply(reply.id)}>Delete</button>
+            <h1>Created By: {users.find(user => user.id === reply.user_id)?.username || ''}</h1>
+            {loggedInUserId === reply.user_id && (<button className='userD' onClick={() => handleDeleteReply(reply.id)}>Delete</button>
+            )}
           </div>
         ))}
       </div>
       <div className='comment'>
-        <h3>Add Reply:</h3>
+        <h1>Add Reply</h1>
         <textarea
           placeholder="Write your reply..."
           value={newReply}
           onChange={(e) => setNewReply(e.target.value)}
         ></textarea>
       </div>
-      <button onClick={handleReplySubmit}>Submit Reply</button>
+      <button className='userD' onClick={handleReplySubmit}>Submit Reply</button>
+      </div>
     </div>
   );
 }
 
 export default ForumDetail;
-
-
-
-
-
-
