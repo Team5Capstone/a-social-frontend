@@ -34,7 +34,7 @@ const SignUp = () => {
     }
 
     axios
-      .post(`${API}/users`, user)
+      .post(`${API}users`, user)
       .then((response) => {
         window.localStorage.setItem('a-social', JSON.stringify(response.data.id));
       })

@@ -20,7 +20,7 @@ function EditProfile() {
 
   useEffect(() => {
     axios
-      .get(`${API}/users/${userId}`)
+      .get(`${API}users/${userId}`)
       .then((response) => {
         const userData = response.data;
         setUpdateUser(userData);
@@ -30,7 +30,7 @@ function EditProfile() {
 
   const updateUserProfile = (updatedUser) => {
     axios
-      .put(`${API}/users/${userId}`, updatedUser)
+      .put(`${API}users/${userId}`, updatedUser)
       .then(() => {
         navigate(`/profile`);
       })

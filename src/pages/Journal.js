@@ -30,7 +30,7 @@ function Journal() {
   };
   useEffect(() => {
     axios
-      .get(`${API}/journals`)
+      .get(`${API}journals`)
       .then((res) => {
         setJournalEntries(res.data);
       })
@@ -57,7 +57,7 @@ function Journal() {
 
   const handleCreateEntry = () => {
     axios
-      .post(`${API}/journals`, newEntry)
+      .post(`${API}journals`, newEntry)
       .then((res) => {
         setJournalEntries([...journalEntries, res.data]);
         setNewEntry({
@@ -79,7 +79,7 @@ function Journal() {
     const { id, title, mood, date, content, user_id } = newEntry;
 
     axios
-      .put(`${API}/journals/${id}`, {
+      .put(`${API}journals/${id}`, {
         title,
         mood,
         date,
@@ -109,7 +109,7 @@ function Journal() {
 
   const handleDeleteEntry = (entryId) => {
     axios
-      .delete(`${API}/journals/${entryId}`)
+      .delete(`${API}journals/${entryId}`)
       .then(() => {
         const updatedEntries = journalEntries.filter(
           (entry) => entry.id !== entryId

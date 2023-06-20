@@ -25,7 +25,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
   useEffect(() => {
     const fetchForumDetails = async () => {
       try {
-        const forumResponse = await axios.get(`${API}/forums/${id}`);
+        const forumResponse = await axios.get(`${API}forums/${id}`);
         setForum(forumResponse.data);
       } catch (error) {
         console.log(error);
@@ -33,7 +33,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
     };
     const fetchUsers = async () => {
         try {
-          const usersResponse = await axios.get(`${API}/users`);
+          const usersResponse = await axios.get(`${API}users`);
           setUsers(usersResponse.data);
         } catch (error) {
           console.log(error);
@@ -43,7 +43,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
 
     const fetchReplies = async () => {
       try {
-        const repliesResponse = await axios.get(`${API}/forums/${id}/replies`);
+        const repliesResponse = await axios.get(`${API}forums/${id}/replies`);
         setReplies(repliesResponse.data);
       } catch (error) {
         console.log(error);
@@ -57,7 +57,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
 
   const handleReplySubmit = async () => {
     try {
-      const response = await axios.post(`${API}/forums/${id}/replies`, {
+      const response = await axios.post(`${API}forums/${id}/replies`, {
         reply_content: newReply,
         user_id: Number(localStorage.getItem('a-social')),
         forum_id: forum.id,
@@ -71,7 +71,7 @@ function ForumDetail({ setOtherUserId, otherUserId }) {
 
   const handleDeleteReply = async (replyId) => {
     try {
-      await axios.delete(`${API}/forums/${id}/replies/${replyId}`);
+      await axios.delete(`${API}forums/${id}/replies/${replyId}`);
       setReplies(replies.filter((reply) => reply.id !== replyId));
     } catch (error) {
       console.log(error);

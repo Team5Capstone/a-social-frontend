@@ -47,28 +47,28 @@ function Forum() {
   };
   useEffect(() => {
     axios
-      .get(`${API}/forums`)
+      .get(`${API}forums`)
       .then((res) => {
         setForums(res.data);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get(`${API}/users`)
+      .get(`${API}users`)
       .then((res) => {
         setUsers(res.data);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get(`${API}/categories`)
+      .get(`${API}categories`)
       .then((res) => {
         setCategories(res.data);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get(`${API}/badges`)
+      .get(`${}/badges`)
       .then((res) => {
         setBadges(res.data);
       })

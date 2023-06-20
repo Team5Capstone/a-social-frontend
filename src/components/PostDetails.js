@@ -14,7 +14,7 @@ function PostDetails() {
 
   useEffect(() => {
     axios
-      .get(`${API}/forums/${postId}`)
+      .get(`${API}forums/${postId}`)
       .then((res) => {
         setPost(res.data);
         setReplies(res.data.replies);

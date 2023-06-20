@@ -19,7 +19,7 @@ function CreateForum() {
 
   useEffect(() => {
     axios
-      .get(`${API}/categories`)
+      .get(`${API}categories`)
       .then((res) => {
         setCategories(res.data);
       })
@@ -28,7 +28,7 @@ function CreateForum() {
       });
 
     axios
-      .get(`${API}/badges`)
+      .get(`${API}badges`)
       .then((res) => {
         setBadges(res.data);
       })
@@ -50,7 +50,7 @@ function CreateForum() {
     };
 
     axios
-      .post(`${API}/forums`, newForum)
+      .post(`${API}forums`, newForum)
       .then((res) => {
         navigate('/forums');
       })

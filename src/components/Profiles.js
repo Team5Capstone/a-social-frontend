@@ -19,12 +19,12 @@ function Profile({ otherUserId }) {
     const userId = window.localStorage.getItem('a-social');
     if (!otherUserId) {
       axios
-      .get(`${API}/users/${userId}`)
+      .get(`${API}users/${userId}`)
       .then((res) => {
         setUser(res.data);
       });
     } else {
-      axios.get(`${API}/users/${otherUserId}`)
+      axios.get(`${API}users/${otherUserId}`)
       .then((res) => {
         setUser(res.data);
       });
