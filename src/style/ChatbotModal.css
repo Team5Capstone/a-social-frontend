@@ -146,6 +146,7 @@
   }
    
   .chatbot-message {
-    font-size: 18px;
+    font-size: xx-large;
+    background-color: #ffffff;
     color: black;
   }  

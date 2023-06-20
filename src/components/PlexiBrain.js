@@ -36,7 +36,7 @@ function PlexiBrain() {
       if (lowercaseSpeech.includes(`hey ${plexiName}`) || lowercaseSpeech.includes(`hello ${plexiName}`)) {
         setResponseMessage('Hello!');
         speakResponse('Hello!');
-      } else if (lowercaseSpeech.includes(`open spotify`)) {
+      } else if (lowercaseSpeech.includes(`open my spotify`)) {
         setResponseMessage('Sure! Opening Spotify!');
         speakResponse('Sure! Opening Spotify!');
         window.open('https://open.spotify.com/playlist/37i9dQZF1EVHGWrwldPRtj?si=7ab210f8f99c4d28', '_blank');
