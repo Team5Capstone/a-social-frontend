@@ -68,7 +68,7 @@ function Forum() {
       .catch((err) => console.log(err));
 
     axios
-      .get(`${}/badges`)
+      .get(`${API}badges`)
       .then((res) => {
         setBadges(res.data);
       })
